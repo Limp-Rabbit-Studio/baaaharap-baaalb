@@ -30,7 +30,7 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        [Range(0, 1)] public float FootstepAudioVolume = 1f;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
@@ -383,10 +383,10 @@ namespace StarterAssets
 
         private void OnLand(AnimationEvent animationEvent)
         {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
+            //if (animationEvent.animatorClipInfo.weight > 0.5f)
+            //{
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
+            //}
         }
     }
 }
