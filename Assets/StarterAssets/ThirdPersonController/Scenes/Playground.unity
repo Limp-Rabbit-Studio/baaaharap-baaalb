@@ -1153,6 +1153,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1762682268}
+    - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1762682274}
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
 --- !u!114 &1762682259 stripped
 MonoBehaviour:
@@ -1199,6 +1203,28 @@ MonoBehaviour:
   dashSpeed: 10
   dashTime: 0.2
   dashCooldown: 2
+--- !u!114 &1762682274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49400524}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d54fedf15b4acb46bddac31aad4d137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseSpeed: 30
+  MaxThrustSpeed: 60
+  MinThrustSpeed: 15
+  ThrustFactor: 5
+  DragFactor: 0.1
+  MinDrag: 0.01
+  RotationSpeed: 5
+  TiltStrength: 90
+  LowPercent: 0.1
+  HighPercent: 1
 --- !u!1 &1764214107
 GameObject:
   m_ObjectHideFlags: 0
