@@ -6,6 +6,7 @@ public class SheepDashAttack : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
+    public bool _isDashing = false;
 
     private CharacterController characterController;
     private float cooldownTimer;
@@ -35,6 +36,7 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
+        _isDashing = true;
         float startTime = Time.time;
         Vector3 dashDirection = transform.forward * dashSpeed;
 
@@ -43,5 +45,7 @@ public class SheepDashAttack : MonoBehaviour
             characterController.Move(dashDirection * Time.deltaTime);
             yield return null; // Wait for the next frame
         }
+        _isDashing = false;
+
     }
 }
