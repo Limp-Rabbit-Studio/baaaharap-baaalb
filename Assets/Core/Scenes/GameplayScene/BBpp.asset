@@ -126,7 +126,7 @@ MonoBehaviour:
     m_Value: 5
   focalLength:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 46
   bladeCount:
     m_OverrideState: 0
     m_Value: 5
@@ -677,8 +677,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 4
   saturation:
-    m_OverrideState: 0
-    m_Value: -36
+    m_OverrideState: 1
+    m_Value: 6
 --- !u!114 &5777280660448420250
 MonoBehaviour:
   m_ObjectHideFlags: 3
