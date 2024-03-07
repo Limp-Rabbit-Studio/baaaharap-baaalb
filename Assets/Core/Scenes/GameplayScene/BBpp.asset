@@ -65,31 +65,31 @@ MonoBehaviour:
   active: 1
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 18
+    m_Value: 75
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: 70
+    m_Value: 37
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: -8
+    m_Value: -24
   greenOutRedIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 18
   greenOutGreenIn:
-    m_OverrideState: 0
-    m_Value: 100
+    m_OverrideState: 1
+    m_Value: 64
   greenOutBlueIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 10
   blueOutRedIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 34
   blueOutGreenIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 10
   blueOutBlueIn:
-    m_OverrideState: 0
-    m_Value: 100
+    m_OverrideState: 1
+    m_Value: 68
 --- !u!114 &-7179413809380224520
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -292,7 +292,7 @@ MonoBehaviour:
     m_Value: {x: 0.9520655, y: 0.78214467, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.8997297, y: 1, z: 0.84472686, w: 0}
+    m_Value: {x: 0.9884684, y: 1, z: 0.67814636, w: 0}
   gain:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.93208534, z: 0.9053941, w: 0}
@@ -507,7 +507,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   red:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       <length>k__BackingField: 2
       m_Loop: 0
@@ -517,10 +517,10 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          time: 0.007392198
+          value: 0.009442091
+          inSlope: 0.5852372
+          outSlope: 0.5852372
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -528,8 +528,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0.54002976
+          outSlope: 0.54002976
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -538,7 +538,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   green:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       <length>k__BackingField: 2
       m_Loop: 0
@@ -550,8 +550,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0
+          outSlope: 0.63566023
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -559,8 +559,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 1.0600632
+          outSlope: 1.0600632
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   blue:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       <length>k__BackingField: 2
       m_Loop: 0
@@ -581,8 +581,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
-          outSlope: 1
+          inSlope: 2.2943373
+          outSlope: 2.2943373
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -590,8 +590,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0.17564099
+          outSlope: 0.17564099
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
