@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Core/Scenes/Main Menu.unity
     guid: 718f9f7c5d2f2754fabf555fe86df675
   - enabled: 1
-    path: Assets/StarterAssets/ThirdPersonController/Scenes/Playground.unity
+    path: Assets/Core/Scenes/Playground from STARTERASSETS.unity
     guid: e9017d5f96b9f09489b4b37e1d6eb914
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
