@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 5827171198412245214}
-  - component: {fileID: 7460015333055217507}
+  - component: {fileID: 6118678125168643298}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -93,7 +93,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.8
   m_Radius: 0.28
-  m_SlopeLimit: 45
+  m_SlopeLimit: 60
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 12
-  SprintSpeed: 12
+  SprintSpeed: 14
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: 1d6c88a817ac53049b48a136ec65dd44, type: 3}
@@ -292,29 +292,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 30
   dashTime: 0.1
-  dashCooldown: 0.4
---- !u!114 &7460015333055217507
+  dashCooldown: 3
+  _isDashing: 0
+--- !u!114 &6118678125168643298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416926081852918481}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d54fedf15b4acb46bddac31aad4d137, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a06cec5a075a24b90116583162e2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseSpeed: 30
-  MaxThrustSpeed: 60
-  MinThrustSpeed: 15
-  ThrustFactor: 5
-  DragFactor: 0.1
-  MinDrag: 0.01
-  RotationSpeed: 5
-  TiltStrength: 90
-  LowPercent: 0.1
-  HighPercent: 1
+  maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1 &8338988566280778634
 GameObject:
   m_ObjectHideFlags: 0

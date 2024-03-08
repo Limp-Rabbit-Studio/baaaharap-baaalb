@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class HalfManHalfRabbitAI : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform projectileSpawnPoint;
+    /*[SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform projectileSpawnPoint;*/
     [SerializeField] private float shootingRange = 10f;
     [SerializeField] private float minimumSafeDistance = 5f;
-    [SerializeField] private float shootingInterval = 1f;
+    /*[SerializeField] private float shootingInterval = 1f;*/
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float bigJumpForce = 15f; // New
     [SerializeField] private float jumpCooldown = 2f;
@@ -14,8 +14,8 @@ public class HalfManHalfRabbitAI : MonoBehaviour
     [SerializeField] private float detectionRange = 15f;
     [SerializeField] private float fieldOfView = 110f;
     [SerializeField] private LayerMask whatIsObstacle;
-    [SerializeField] private float force = 10f;
-    [SerializeField] private float ammoLifeTime = 5f;
+    /*[SerializeField] private float force = 10f;
+    [SerializeField] private float ammoLifeTime = 5f;*/
     [SerializeField] private float healthThresholdForBigJump = 20f; // New
 
     private Transform player;
@@ -105,18 +105,18 @@ public class HalfManHalfRabbitAI : MonoBehaviour
                 RetreatFromPlayer();
                 timeSinceLastJump = 0f;
             }
-            if (timeSinceLastShot >= shootingInterval)
+            //if (timeSinceLastShot >= shootingInterval)
             {
-                Shoot();
-                timeSinceLastShot = 0f;
+                // Shoot();
+                // timeSinceLastShot = 0f;
             }
         }
         else
         {
-            if (timeSinceLastShot >= shootingInterval)
+            //if (timeSinceLastShot >= shootingInterval)
             {
-                Shoot();
-                timeSinceLastShot = 0f;
+                // Shoot();
+                // timeSinceLastShot = 0f;
             }
         }
     }
@@ -133,7 +133,7 @@ public class HalfManHalfRabbitAI : MonoBehaviour
         rb.AddForce(jumpDirection.normalized * jumpForce, ForceMode.Impulse);
     }
 
-    private void Shoot()
+   /* private void Shoot()
     {   
         Debug.Log("Shooting");
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
@@ -141,7 +141,7 @@ public class HalfManHalfRabbitAI : MonoBehaviour
         Vector3 direction = (player.position - projectileSpawnPoint.position).normalized;
         projectileRb.velocity = direction * force;
         Destroy(projectile, ammoLifeTime);
-    }
+    }*/
 
     private void IdleJump()
     {

@@ -40,6 +40,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        gameObject.SetActive(false);
+        // Destroy(gameObject);
+        // gameObject.SetActive(false);
     }
 }
