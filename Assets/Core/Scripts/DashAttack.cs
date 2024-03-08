@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SheepDashAttack : MonoBehaviour
 {
-    Animator animator;
+    Animator animctrl;
 
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
@@ -18,6 +18,11 @@ public class SheepDashAttack : MonoBehaviour
         {
             Debug.LogError("SheepDashAttack: No CharacterController attached to the GameObject");
         }
+    }
+
+    private void Start()
+    {
+        animctrl = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -36,7 +41,7 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
-        animator.SetBool("_isDashing", true);
+        animctrl.SetBool("_isDashing", true);
         float startTime = Time.time;
         Vector3 dashDirection = transform.forward * dashSpeed;
 
@@ -45,7 +50,7 @@ public class SheepDashAttack : MonoBehaviour
             characterController.Move(dashDirection * Time.deltaTime);
             yield return null; // Wait for the next frame
         }
-        animator.SetBool("_isDashing", false);
+        animctrl.SetBool("_isDashing", false);
 
     }
 }

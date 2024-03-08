@@ -88,6 +88,8 @@ namespace StarterAssets
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
+            animator = GetComponentInChildren<Animator>();
+
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM 
@@ -120,6 +122,7 @@ namespace StarterAssets
 
             if (_isGliding)
             {
+
                 Glide();
             }
         }
@@ -133,7 +136,7 @@ namespace StarterAssets
         {
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDJump = Animator.StringToHash("Jump");
+            _animIDJump = Animator.StringToHash("_isJumping");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
@@ -241,13 +244,16 @@ namespace StarterAssets
             }
             else
             {
+                animator.SetBool("_isJumping", true);
+
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
                 {
                     _fallTimeoutDelta -= Time.deltaTime;
                 }
                 else
-                {
+                  {
+                    animator.SetBool("_isJumping", false);
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDFreeFall, true);
@@ -264,6 +270,7 @@ namespace StarterAssets
         private void StartGlide()
         {
             _isGliding = true;
+            animator.SetBool("_isGliding", _isGliding);
             // Set a slight downward vertical velocity to initiate the glide descent
             _verticalVelocity = Mathf.Max(_verticalVelocity, -1f);
         }
@@ -271,6 +278,7 @@ namespace StarterAssets
         private void StopGlide()
         {
             _isGliding = false;
+            animator.SetBool("_isGliding", _isGliding);
             // Reset vertical velocity to start normal gravity effect
             _verticalVelocity = 0f;
         }
