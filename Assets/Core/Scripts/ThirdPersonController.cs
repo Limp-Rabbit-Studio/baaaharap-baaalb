@@ -225,6 +225,7 @@ namespace StarterAssets
                     _animator.SetBool(_animIDJump, false);
                     _animator.SetBool(_animIDFreeFall, false);
                 }
+                OnSoundReady();
                 if (_verticalVelocity < 0.0f)
                 {
                     _verticalVelocity = -2f;
@@ -236,6 +237,7 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
+                    OnSoundPlay();
                 }
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
@@ -245,7 +247,6 @@ namespace StarterAssets
             else
             {
                 animator.SetBool("_isJumping", true);
-                OnSoundPlay();
 
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
@@ -254,7 +255,6 @@ namespace StarterAssets
                 }
                 else
                 {
-                    OnSoundReady();
                     animator.SetBool("_isJumping", false);
                     if (_hasAnimator)
                     {
@@ -346,14 +346,20 @@ namespace StarterAssets
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
         }
 
+        bool canPlaySound = true;
+
         void OnSoundPlay()
         {
-
+            if (canPlaySound)
+            {
+                canPlaySound = false;
+                OnSound();
+            }
         }
 
         void OnSoundReady()
         {
-
+            canPlaySound = true;
         }
     }
 }
