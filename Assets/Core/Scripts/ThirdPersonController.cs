@@ -11,6 +11,7 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        Animator animator;
         public float MoveSpeed = 2.0f;
         public float SprintSpeed = 5.335f;
         public float RotationSmoothTime = 0.12f;
@@ -49,6 +50,7 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
         private bool _isGliding;
+        private bool _isWalking;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -282,7 +284,7 @@ namespace StarterAssets
                 float forwardGlideSpeed = GlideSpeed + glideFallSpeed; // Increase forward speed by the falling speed
 
                 // Apply gravity at a reduced rate while gliding
-                _verticalVelocity += Gravity * Time.deltaTime * 0.5f;
+                _verticalVelocity += Gravity * Time.deltaTime * 0.25f;
 
                 // Forward movement based on the player's facing direction
                 Vector3 moveDirection = transform.forward * forwardGlideSpeed;
