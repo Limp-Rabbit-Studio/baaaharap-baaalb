@@ -1,18 +1,21 @@
 using UnityEngine;
+
 public class Fire : MonoBehaviour
 {
-    public float damage;
+    [SerializeField] private float damage = 10f;
 
     private void Start()
     {
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 10f); // Auto-destroy after 10 seconds
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            other.GetComponent<PlayerStats>().TakeDamage(damage);
-            Destroy(gameObject);
+            damageable.TakeDamage(damage);
+            Destroy(gameObject); // Destroy the projectile after inflicting damage
         }
     }
 }

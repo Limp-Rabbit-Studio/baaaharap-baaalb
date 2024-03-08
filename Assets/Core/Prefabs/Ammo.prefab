@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8953252929643043549}
   - component: {fileID: 5201857213290252306}
   - component: {fileID: 7336886797559522945}
+  - component: {fileID: -8788923230411563577}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 09f4c573825cdd2418f9c611791df8f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,5 +134,18 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-8788923230411563577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698596963088353734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a29c831237b298438df55f72ec2052a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
