@@ -245,6 +245,7 @@ namespace StarterAssets
             else
             {
                 animator.SetBool("_isJumping", true);
+                OnSoundPlay();
 
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
@@ -252,7 +253,8 @@ namespace StarterAssets
                     _fallTimeoutDelta -= Time.deltaTime;
                 }
                 else
-                  {
+                {
+                    OnSoundReady();
                     animator.SetBool("_isJumping", false);
                     if (_hasAnimator)
                     {
@@ -337,6 +339,21 @@ namespace StarterAssets
         private void OnLand(AnimationEvent animationEvent)
         {
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        }
+
+        private void OnSound()
+        {
+            AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        }
+
+        void OnSoundPlay()
+        {
+
+        }
+
+        void OnSoundReady()
+        {
+
         }
     }
 }

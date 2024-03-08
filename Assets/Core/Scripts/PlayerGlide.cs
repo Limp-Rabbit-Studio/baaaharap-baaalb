@@ -23,7 +23,7 @@ public class PlayerGlide : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            controller.Gravity = -2;
+            controller.Gravity = -8;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
