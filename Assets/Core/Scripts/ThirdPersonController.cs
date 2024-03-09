@@ -54,6 +54,8 @@ namespace StarterAssets
 
         int isWalkingHash;
         int isJumpingHash;
+        int isGroundedHash;
+
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -101,6 +103,7 @@ namespace StarterAssets
 #endif
             isWalkingHash = Animator.StringToHash("_isWalking");
             isJumpingHash = Animator.StringToHash("_isJumping");
+            isGroundedHash = Animator.StringToHash("_isGrounded");
             AssignAnimationIDs();
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -133,11 +136,9 @@ namespace StarterAssets
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            //_animator.SetBool(_animIDGrounded, Grounded);asdasd
+            animator.SetBool(isGroundedHash, Grounded);
 
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
         }
 
         private void CameraRotation()
@@ -213,7 +214,7 @@ namespace StarterAssets
             if (Grounded)
             {
                 _fallTimeoutDelta = FallTimeout;
-                animator.SetBool(isJumpingHash, false);
+                //animator.SetBool(isJumpingHash, false);
                 //if (_hasAnimator)
                 //{
                 //    _animator.SetBool(_animIDJump, false);
@@ -227,7 +228,7 @@ namespace StarterAssets
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                    animator.SetBool(isJumpingHash, true);
+                    //animator.SetBool(isJumpingHash, true);
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
@@ -241,7 +242,7 @@ namespace StarterAssets
             }
             else
             {
-                animator.SetBool(isJumpingHash, true);
+                // animator.SetBool(isJumpingHash, true);
 
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
@@ -251,10 +252,10 @@ namespace StarterAssets
                 else
                 {
                     //animator.SetBool("_isJumping", false);
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
-                    }
+                    //if (_hasAnimator)
+                    //{
+                    //    _animator.SetBool(_animIDFreeFall, true);
+                    //}
                 }
                 _input.jump = false;
             }
