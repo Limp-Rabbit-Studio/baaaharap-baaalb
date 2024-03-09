@@ -27,7 +27,7 @@ public class SheepDashAttack : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         if (characterController == null)
         {
-            Debug.LogError("SheepDashAttack: No CharacterController attached to the GameObject");
+            // Debug.LogError("SheepDashAttack: No CharacterController attached to the GameObject");
         }
         else
         {
@@ -36,7 +36,7 @@ public class SheepDashAttack : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            Debug.LogError("SheepDashAttack: No AudioSource found. Please attach an AudioSource to the GameObject.");
+            // Debug.LogError("SheepDashAttack: No AudioSource found. Please attach an AudioSource to the GameObject.");
         }
     }
 
@@ -45,7 +45,7 @@ public class SheepDashAttack : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         if (anim == null)
         {
-            Debug.LogError("SheepDashAttack: No Animator found in children.");
+            // Debug.LogError("SheepDashAttack: No Animator found in children.");
         }
         else
         {

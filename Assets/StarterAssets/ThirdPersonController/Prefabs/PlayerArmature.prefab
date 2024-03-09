@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheepDashAttackScript: {fileID: 5827171198412245214}
+  bangSound: {fileID: 0}
 --- !u!1 &3837663348675104489
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +100,74 @@ Transform:
   - {fileID: 975745782421540042}
   m_Father: {fileID: 3893294197879345259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4321167308166982164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6825881848150343674}
+  - component: {fileID: 3516553127357186103}
+  - component: {fileID: 1794372799564393988}
+  m_Layer: 8
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6825881848150343674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321167308166982164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3893294197879345259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3516553127357186103
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321167308166982164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.38
+  m_Center: {x: 0.03, y: 0.56, z: 0.34}
+--- !u!114 &1794372799564393988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321167308166982164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f60260d8f91804186ec60a713b2e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheepDashAttackScript: {fileID: 5827171198412245214}
+  bangSound: {fileID: 0}
 --- !u!1 &4416926081852918481
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +210,7 @@ Transform:
   - {fileID: 8002264680419333305}
   - {fileID: 473478785951434789}
   - {fileID: 5763472412203043498}
+  - {fileID: 6825881848150343674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4416926081852918491
@@ -367,6 +437,8 @@ MonoBehaviour:
   dashTime: 0.1
   dashCooldown: 3
   damage: 10
+  swooshSound: {fileID: 0}
+  bangSound: {fileID: 8300000, guid: 39af4e807c5d61447b6317a23e7ecb72, type: 3}
 --- !u!114 &6118678125168643298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3521bf6927c6b249b81dc0ea4a0fd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  glideAudioClip: {fileID: 0}
+  glideAudioVolume: 0.7
 --- !u!114 &2822348560509361011
 MonoBehaviour:
   m_ObjectHideFlags: 0

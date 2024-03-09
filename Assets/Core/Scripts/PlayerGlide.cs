@@ -8,6 +8,8 @@ public class PlayerGlide : MonoBehaviour
     Animator animator;
     ThirdPersonController controller;
     int isGlidingHash;
+    int isJumpingHash;
+    int isGroundedHash;
     float airTime;
 
     [SerializeField] private AudioClip glideAudioClip;
@@ -26,6 +28,8 @@ public class PlayerGlide : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         isGlidingHash = Animator.StringToHash("_isGliding");
+        isJumpingHash = Animator.StringToHash("_isJumping");
+        isGroundedHash = Animator.StringToHash("_isGrounded");
     }
 
     // Update is called once per frame
@@ -34,20 +38,25 @@ public class PlayerGlide : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool(isGlidingHash, true);
+            animator.SetBool(isGroundedHash, false);
+            animator.SetBool(isJumpingHash, true);
             controller.Gravity = -8;
-            PlayGlideSound();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            animator.SetBool(isGlidingHash, false);
             controller.Gravity = -15;
-            StopGlideSound();
+        }
+
+        if (animator.GetBool("_isGrounded") == true)
+        {
+            animator.SetBool(isJumpingHash, false);
+            animator.SetBool(isGlidingHash, false);
         }
     }
 
     void PlayGlideSound()
     {
-        AudioSource.PlayClipAtPoint(glideAudioClip, transform.position, glideAudioVolume);
+        // AudioSource.PlayClipAtPoint(glideAudioClip, transform.position, glideAudioVolume);
     }
 
     void StopGlideSound()

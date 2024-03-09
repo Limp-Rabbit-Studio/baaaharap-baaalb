@@ -13,7 +13,7 @@ public class DashCollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            Debug.LogError("DashCollisionHandler: No AudioSource found. Please attach an AudioSource to the GameObject.");
+            // Debug.LogError("DashCollisionHandler: No AudioSource found. Please attach an AudioSource to the GameObject.");
         }
     }
 

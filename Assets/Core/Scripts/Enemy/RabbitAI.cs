@@ -3,7 +3,6 @@ using UnityEngine;
 public class RabbitEnemyAI : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform player;
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float shootingRange = 10f;
@@ -21,8 +20,11 @@ public class RabbitEnemyAI : MonoBehaviour
     private int[] divisionJumpCount = new int[4];
     private int lastJumpDivision = -1;
 
+    private Transform player;
+
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
     }
