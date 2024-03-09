@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5987333607445313935}
   - component: {fileID: 3761237414329155257}
   - component: {fileID: 350606335729487400}
-  - component: {fileID: 1830438762814337632}
   m_Layer: 0
   m_Name: EnemyLogic
   m_TagString: Enemy
@@ -50,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae0d248870152e46b3f5dd633c25ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   healthBar: {fileID: 0}
-  currentHealth: 50
+  currentHealth: 10
 --- !u!54 &5987333607445313935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102,30 +101,6 @@ BoxCollider:
   m_Size: {x: 1, y: 2.9632187, z: 1}
   m_Center: {x: 0, y: 0.98160934, z: 0}
 --- !u!114 &350606335729487400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331179885573656822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79111c18f81b8fc4588fa8a1db82b277, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3698596963088353734, guid: b6f55e1e78c4286418378dae6ca9daf1,
-    type: 3}
-  player: {fileID: 0}
-  projectileSpawnPoint: {fileID: 2609380053398032386}
-  spawnPoint: {fileID: 7387506524163176793}
-  shootingRange: 10
-  shootingInterval: 1
-  jumpForce: 5
-  jumpInterval: 2
-  jumpRadius: 5
-  projectileForce: 10
-  projectileLifetime: 5
---- !u!114 &1830438762814337632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

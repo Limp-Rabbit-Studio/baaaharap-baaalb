@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SheepDashAttack : MonoBehaviour
 {
+    public GameObject signifier;
     public Animator anim;
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
@@ -42,6 +43,7 @@ public class SheepDashAttack : MonoBehaviour
         {
             Debug.Log("SheepDashAttack: Animator component found.");
         }
+        signifier.SetActive(false);
     }
 
     void Update()
@@ -51,11 +53,17 @@ public class SheepDashAttack : MonoBehaviour
             Debug.Log("SheepDashAttack: Dash initiated.");
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
+
+            signifier.SetActive(false);
         }
 
         if (cooldownTimer > 0f)
         {
             cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0f)
+            {
+                signifier.SetActive(true);
+            }
         }
     }
 
