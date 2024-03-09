@@ -9,7 +9,6 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        Debug.Log("Enemy Health: " + currentHealth);
     }
 
     private void Start()
@@ -23,6 +22,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
+        Debug.Log("EnemyStats: TakeDamage called with amount: " + amount);
         currentHealth -= amount;
         if (healthBar != null)
         {

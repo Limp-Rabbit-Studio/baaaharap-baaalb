@@ -9,14 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8777884090673995006}
-  - component: {fileID: 1793612236831954905}
-  - component: {fileID: 7094281233207777645}
   - component: {fileID: 8307463819303640251}
   - component: {fileID: 5987333607445313935}
   - component: {fileID: 3761237414329155257}
+  - component: {fileID: 350606335729487400}
   m_Layer: 0
   m_Name: EnemyLogic
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,50 +37,6 @@ Transform:
   - {fileID: 2609380053398032386}
   m_Father: {fileID: 8580409977536733647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1793612236831954905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331179885573656822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dff358dcc4f598d45acb1f7a0994a8a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3698596963088353734, guid: b6f55e1e78c4286418378dae6ca9daf1,
-    type: 3}
-  player: {fileID: 0}
-  projectileSpawnPoint: {fileID: 2609380053398032386}
-  shootingRange: 20
-  shootingInterval: 0.8
-  force: 20
-  ammoLifeTime: 2
---- !u!114 &7094281233207777645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331179885573656822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1e842abfe0b9a40aee534e4492d80f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootingRange: 10
-  minimumSafeDistance: 5
-  jumpForce: 5
-  bigJumpForce: 5
-  jumpCooldown: 2
-  bigJumpCooldown: 30
-  detectionRange: 15
-  fieldOfView: 110
-  whatIsObstacle:
-    serializedVersion: 2
-    m_Bits: 0
-  healthThresholdForBigJump: 20
 --- !u!114 &8307463819303640251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   healthBar: {fileID: 0}
-  currentHealth: 0
+  currentHealth: 50
 --- !u!54 &5987333607445313935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,7 +77,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &3761237414329155257
 BoxCollider:
@@ -145,6 +100,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &350606335729487400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331179885573656822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79111c18f81b8fc4588fa8a1db82b277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 3698596963088353734, guid: b6f55e1e78c4286418378dae6ca9daf1,
+    type: 3}
+  player: {fileID: 0}
+  projectileSpawnPoint: {fileID: 2609380053398032386}
+  spawnPoint: {fileID: 7387506524163176793}
+  shootingRange: 10
+  shootingInterval: 1
+  jumpForce: 5
+  jumpInterval: 2
+  jumpRadius: 5
+  projectileForce: 10
+  projectileLifetime: 5
 --- !u!1 &1539230765838916018
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,17 +25,30 @@ public class SheepDashAttack : MonoBehaviour
         {
             Debug.LogError("SheepDashAttack: No CharacterController attached to the GameObject");
         }
+        else
+        {
+            Debug.Log("SheepDashAttack: CharacterController found.");
+        }
     }
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        if (anim == null)
+        {
+            Debug.LogError("SheepDashAttack: No Animator found in children.");
+        }
+        else
+        {
+            Debug.Log("SheepDashAttack: Animator component found.");
+        }
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0f && characterController != null)
         {
+            Debug.Log("SheepDashAttack: Dash initiated.");
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
         }
@@ -48,6 +61,7 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
+        Debug.Log("SheepDashAttack: Starting dash.");
         anim.SetBool("_isDashing", true);
         isDashing = true;
 
@@ -62,6 +76,12 @@ public class SheepDashAttack : MonoBehaviour
 
         isDashing = false;
         anim.SetBool("_isDashing", false);
-        Debug.Log("Dash is done - SheepDashAttack");
+        Debug.Log("SheepDashAttack: Dash completed.");
+
+        // Additional log to confirm dash completion and reset
+        if (!isDashing)
+        {
+            Debug.Log("SheepDashAttack: No longer dashing.");
+        }
     }
 }
