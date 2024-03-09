@@ -31,7 +31,7 @@ public class SheepDashAttack : MonoBehaviour
         }
         else
         {
-            Debug.Log("SheepDashAttack: CharacterController found.");
+            // Debug.Log("SheepDashAttack: CharacterController found.");
         }
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -49,7 +49,7 @@ public class SheepDashAttack : MonoBehaviour
         }
         else
         {
-            Debug.Log("SheepDashAttack: Animator component found.");
+            // Debug.Log("SheepDashAttack: Animator component found.");
         }
         signifier.SetActive(false);
     }
@@ -58,7 +58,7 @@ public class SheepDashAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0f && characterController != null)
         {
-            Debug.Log("SheepDashAttack: Dash initiated.");
+            // Debug.Log("SheepDashAttack: Dash initiated.");
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
             signifier.SetActive(false);
@@ -79,7 +79,7 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
-        Debug.Log("SheepDashAttack: Starting dash.");
+        // Debug.Log("SheepDashAttack: Starting dash.");
         anim.SetBool("_isDashing", true);
         isDashing = true;
 
@@ -94,12 +94,12 @@ public class SheepDashAttack : MonoBehaviour
 
         isDashing = false;
         anim.SetBool("_isDashing", false);
-        Debug.Log("SheepDashAttack: Dash completed.");
+        // Debug.Log("SheepDashAttack: Dash completed.");
 
         // Additional log to confirm dash completion and reset
         if (!isDashing)
         {
-            Debug.Log("SheepDashAttack: No longer dashing.");
+            // Debug.Log("SheepDashAttack: No longer dashing.");
         }
     }
 }
