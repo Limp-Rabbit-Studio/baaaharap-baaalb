@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour, IDamageable
 {
+    Animator AIanimation;
+    int AIisDeadHash;
     [SerializeField] private float maxHealth = 50f;
     [SerializeField] private HealthBar healthBar;
 
@@ -13,6 +15,9 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        AIanimation = GetComponent<Animator>();
+        AIisDeadHash = Animator.StringToHash("AI_isDead");
+
         currentHealth = maxHealth;
         if (healthBar != null)
         {
@@ -44,8 +49,9 @@ public class EnemyStats : MonoBehaviour, IDamageable
     }
 
     private void Die()
-    {   
-         Destroy(gameObject);
+    {
+        AIanimation.SetBool(AIisDeadHash, true);
+        Destroy(gameObject,5f);
         // gameObject.SetActive(false);
     }
 }

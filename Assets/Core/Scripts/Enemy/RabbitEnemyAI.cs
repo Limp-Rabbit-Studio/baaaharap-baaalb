@@ -22,11 +22,17 @@ public class RabbitEnemyAI : MonoBehaviour
 
     [SerializeField] private Transform player;
 
+    public Animator AIanim;
+    int AIisJumpingHash;
+
+
     private void Start()
     {
+        AIanim  = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
+        AIisJumpingHash = Animator.StringToHash("AI_isJumping");
     }
 
     private void Update()
@@ -67,8 +73,10 @@ public class RabbitEnemyAI : MonoBehaviour
         timeSinceLastJump += Time.deltaTime;
         if (timeSinceLastJump >= jumpInterval && rb != null)
         {
+            AIanim.SetBool(AIisJumpingHash, true);
             DoSimpleJump();
             // DoComplexJump();
+            AIanim.SetBool(AIisJumpingHash, false);
 
             timeSinceLastJump = 0f;
         }
