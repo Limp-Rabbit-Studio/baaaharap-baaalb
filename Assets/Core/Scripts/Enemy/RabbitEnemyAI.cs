@@ -76,10 +76,7 @@ public class RabbitEnemyAI : MonoBehaviour
         timeSinceLastJump += Time.deltaTime;
         if (timeSinceLastJump >= actualJumpInterval && rb != null)
         {
-            AIanim.SetBool(AIisJumpingHash, true);
             DoSimpleJump();
-            // DoComplexJump();
-            AIanim.SetBool(AIisJumpingHash, false);
 
             actualJumpInterval = jumpInterval + Random.Range(-.2f, .2f);
             timeSinceLastJump = 0f;
@@ -92,7 +89,7 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] Vector3 newLoc;
     [SerializeField] Vector3 delta;
     void DoSimpleJump()
-    {
+    {       
         distanceX = Random.Range(-jumpRadius, jumpRadius);
         distanceZ = Random.Range(-jumpRadius, jumpRadius);
         crtLoc = transform.position;
@@ -100,9 +97,11 @@ public class RabbitEnemyAI : MonoBehaviour
            distanceX + spawnPoint.position.x,
            0,
            distanceZ + spawnPoint.position.z);
+
         delta = newLoc - crtLoc;
         delta.y = jumpForce;
         rb.AddForce(delta * 1, ForceMode.Impulse);
+        AIanim.SetTrigger("AI_JumpTrigger");
     }
 
     void DoComplexJump()
