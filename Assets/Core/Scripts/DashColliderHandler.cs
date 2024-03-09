@@ -6,9 +6,14 @@ public class DashCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (sheepDashAttackScript.IsDashing && other.CompareTag("Enemy"))
         {
-            sheepDashAttackScript.ApplyDamageToEnemy(other);
+            EnemyStats enemy = other.GetComponent<EnemyStats>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(sheepDashAttackScript.damage);
+                Debug.Log("Enemy hit by dash.");
+            }
         }
     }
 }

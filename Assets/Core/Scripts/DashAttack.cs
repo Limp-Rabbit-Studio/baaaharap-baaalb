@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class SheepDashAttack : MonoBehaviour
 {
-    Animator animctrl;
-
+    public Animator anim;
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
+    public float damage = 10f;
     private CharacterController characterController;
     private float cooldownTimer;
-    int isDashingHash;
+    private bool isDashing = false;
+
+    // Make the isDashing property public so it can be accessed from the DashCollisionHandler
+    public bool IsDashing
+    {
+        get { return isDashing; }
+    }
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -22,8 +29,7 @@ public class SheepDashAttack : MonoBehaviour
 
     private void Start()
     {
-        animctrl = GetComponentInChildren<Animator>();
-        isDashingHash = Animator.StringToHash("_isDashing");
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -42,16 +48,20 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
-        animctrl.SetBool(isDashingHash, true);
+        anim.SetBool("_isDashing", true);
+        isDashing = true;
+
         float startTime = Time.time;
         Vector3 dashDirection = transform.forward * dashSpeed;
 
         while (Time.time < startTime + dashTime)
         {
             characterController.Move(dashDirection * Time.deltaTime);
-            yield return null; // Wait for the next frame
+            yield return null;
         }
-        animctrl.SetBool(isDashingHash, false);
+
+        isDashing = false;
+        anim.SetBool("_isDashing", false);
         Debug.Log("Dash is done - SheepDashAttack");
     }
 }

@@ -12,8 +12,8 @@ public class Fire : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collided object isn't the shooter
-        if (other.CompareTag(shooterTag) == false)
+        // Check if the collided object has the "Player" tag and is not the shooter
+        if (other.CompareTag("Player") && !other.CompareTag(shooterTag))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)
