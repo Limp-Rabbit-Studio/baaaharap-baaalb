@@ -99,8 +99,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.78, y: 2.15, z: 1.64}
-  m_Center: {x: 0, y: 1.07, z: -0.06}
+  m_Size: {x: 1.9984236, y: 3.8470926, z: 3.0550408}
+  m_Center: {x: -0.0000006854534, y: 1.9185462, z: -0.08101606}
 --- !u!114 &350606335729487400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,15 +118,14 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 2609380053398032386}
   spawnPoint: {fileID: 7387506524163176793}
   shootingRange: 10
-  shootingInterval: 1
+  shootingInterval: 0.5
   jumpForce: 5
   jumpInterval: 2
   jumpRadius: 5
-  projectileForce: 10
+  projectileForce: 20
   projectileLifetime: 5
-  maxDistanceFromSpawn: 30
-  player: {fileID: 0}
   AIanim: {fileID: 0}
+  player: {fileID: 0}
   distanceX: 0
   distanceZ: 0
   crtLoc: {x: 0, y: 0, z: 0}
@@ -241,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 8723818246641263760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 296.5901, y: 75.119995, z: 49.799957}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -260,17 +259,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d5ad7da11d772de4a9c8038aa10db413,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2807653
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5ad7da11d772de4a9c8038aa10db413,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.28076527
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5ad7da11d772de4a9c8038aa10db413,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.31723666
+      value: 0.49715593
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5ad7da11d772de4a9c8038aa10db413,
         type: 3}
@@ -321,6 +320,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5ad7da11d772de4a9c8038aa10db413,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d5ad7da11d772de4a9c8038aa10db413,
         type: 3}

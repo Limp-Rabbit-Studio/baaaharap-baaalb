@@ -19,12 +19,21 @@ public class DashCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!sheepDashAttackScript.IsDashing)
+        {
+            return;
+        }
+        if (!other.CompareTag("Player"))
+        {
+            sheepDashAttackScript.StopDash();
+        }
         // Debug.Log("Collided with: " + other.name + "    " + other.tag + "     " + sheepDashAttackScript.IsDashing + "   " + other.GetComponent<EnemyStats>());
-        if (other.CompareTag("Enemy") && sheepDashAttackScript.IsDashing)
+        if (other.CompareTag("Enemy"))
         {
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             if (enemy != null)
             {
+                sheepDashAttackScript.ResetCooldown();
                 enemy.TakeDamage(sheepDashAttackScript.damage);
                 // Debug.Log("Dash Collision: Enemy hit with damage.");
 

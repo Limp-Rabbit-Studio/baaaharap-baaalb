@@ -1,73 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1771133535425833250
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 473478785951434789}
-  - component: {fileID: 5177850679690876322}
-  - component: {fileID: 7596281459519443989}
-  m_Layer: 8
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &473478785951434789
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771133535425833250}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3893294197879345259}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5177850679690876322
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771133535425833250}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.38
-  m_Center: {x: 0.03, y: 0.56, z: 0.34}
---- !u!114 &7596281459519443989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771133535425833250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f60260d8f91804186ec60a713b2e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sheepDashAttackScript: {fileID: 5827171198412245214}
-  bangSound: {fileID: 0}
 --- !u!1 &3837663348675104489
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +44,7 @@ GameObject:
   - component: {fileID: 3516553127357186103}
   - component: {fileID: 1794372799564393988}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: DashDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,9 +140,8 @@ Transform:
   m_Children:
   - {fileID: 8338988566280778637}
   - {fileID: 8002264680419333305}
-  - {fileID: 473478785951434789}
-  - {fileID: 5763472412203043498}
   - {fileID: 6825881848150343674}
+  - {fileID: 5763472412203043498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4416926081852918491
@@ -434,7 +365,7 @@ MonoBehaviour:
   signifier: {fileID: 8957681784044125393}
   anim: {fileID: 6587261341607630512}
   dashSpeed: 30
-  dashTime: 0.1
+  dashTime: 0.2
   dashCooldown: 3
   damage: 10
   swooshSound: {fileID: 0}

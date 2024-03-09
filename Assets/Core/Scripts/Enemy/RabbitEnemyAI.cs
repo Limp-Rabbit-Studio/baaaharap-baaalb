@@ -12,7 +12,6 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] private float jumpRadius = 5f;
     [SerializeField] private float projectileForce = 10f;
     [SerializeField] private float projectileLifetime = 5f;
-    [SerializeField] private float maxDistanceFromSpawn = 5f;
 
     private float timeSinceLastShot = 0f;
     private float timeSinceLastJump = 0f;
@@ -20,19 +19,23 @@ public class RabbitEnemyAI : MonoBehaviour
     private int[] divisionJumpCount = new int[4];
     private int lastJumpDivision = -1;
 
-    [SerializeField] private Transform player;
-
     public Animator AIanim;
     int AIisJumpingHash;
+    float actualJumpInterval;
 
+    [SerializeField] private Transform player;
 
     private void Start()
     {
         AIanim  = GetComponent<Animator>();
+        float scaleRand = Random.Range(-.1f, .1f);
+        transform.localScale = Vector3.one + new Vector3(scaleRand, scaleRand, scaleRand);
+        AIanim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
         AIisJumpingHash = Animator.StringToHash("AI_isJumping");
+        actualJumpInterval = jumpInterval + Random.Range(-.2f, .2f);
     }
 
     private void Update()
@@ -71,13 +74,14 @@ public class RabbitEnemyAI : MonoBehaviour
     private void JumpRandomlyTowardsPlayer()
     {
         timeSinceLastJump += Time.deltaTime;
-        if (timeSinceLastJump >= jumpInterval && rb != null)
+        if (timeSinceLastJump >= actualJumpInterval && rb != null)
         {
             AIanim.SetBool(AIisJumpingHash, true);
             DoSimpleJump();
             // DoComplexJump();
             AIanim.SetBool(AIisJumpingHash, false);
 
+            actualJumpInterval = jumpInterval + Random.Range(-.2f, .2f);
             timeSinceLastJump = 0f;
         }
     }
@@ -89,8 +93,8 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] Vector3 delta;
     void DoSimpleJump()
     {
-        distanceX = Random.Range(-10f, 10f);
-        distanceZ = Random.Range(-10f, 10f);
+        distanceX = Random.Range(-jumpRadius, jumpRadius);
+        distanceZ = Random.Range(-jumpRadius, jumpRadius);
         crtLoc = transform.position;
         newLoc = new Vector3(
            distanceX + spawnPoint.position.x,
@@ -125,7 +129,7 @@ public class RabbitEnemyAI : MonoBehaviour
         Vector3 potentialNewPosition = transform.position + new Vector3(jumpVector.x * jumpForce, 0, jumpVector.z * jumpForce);
 
         // Check if the new position would be within the allowed radius from the spawn point
-        if (Vector3.Distance(spawnPoint.position, potentialNewPosition) <= maxDistanceFromSpawn)
+        if (Vector3.Distance(spawnPoint.position, potentialNewPosition) <= jumpRadius)
         {
             rb.AddForce(new Vector3(jumpVector.x, jumpForce, jumpVector.z), ForceMode.Impulse);
             divisionJumpCount[targetDivision]++; // Increment the jump count for the chosen division

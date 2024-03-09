@@ -51,7 +51,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
     private void Die()
     {
         AIanimation.SetBool(AIisDeadHash, true);
-        Destroy(gameObject,5f);
+        Destroy(gameObject);
         // gameObject.SetActive(false);
     }
 }

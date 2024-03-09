@@ -77,6 +77,19 @@ public class SheepDashAttack : MonoBehaviour
         }
     }
 
+    public void ResetCooldown()
+    {
+        cooldownTimer = 0f;
+        signifier.SetActive(true);
+    }
+
+    public void StopDash()
+    {
+        forceStop = true;
+    }
+
+    bool forceStop = false;
+
     IEnumerator DoDash()
     {
         // Debug.Log("SheepDashAttack: Starting dash.");
@@ -86,8 +99,15 @@ public class SheepDashAttack : MonoBehaviour
         float startTime = Time.time;
         Vector3 dashDirection = transform.forward * dashSpeed;
 
+        forceStop = false;
+
         while (Time.time < startTime + dashTime)
         {
+            if (forceStop)
+            {
+                forceStop = false;
+                break;
+            }
             characterController.Move(dashDirection * Time.deltaTime);
             yield return null;
         }
