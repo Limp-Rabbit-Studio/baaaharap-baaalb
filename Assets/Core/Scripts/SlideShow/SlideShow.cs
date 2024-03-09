@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SlideShow : MonoBehaviour
 {
-    [SerializeField] private Image image;
-    [SerializeField] private Sprite[] allSprites;
+
+    [SerializeField] private GameObject[] slides;
+    // [SerializeField] private Image image;
+    // [SerializeField] private Sprite[] allSprites;
     [SerializeField] private AudioClip[] slideSounds; // Array of sound clips for each slide
     [SerializeField] private AudioClip transitionSound; // Sound clip for transitioning between slides
     [SerializeField] private AudioClip continuousSound; // Continuous sound clip to play over all slides
@@ -19,6 +22,11 @@ public class SlideShow : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < slides.Length; i++)
+        {
+            slides[i].SetActive(false);
+        }
+
         audioSource = gameObject.AddComponent<AudioSource>(); // AudioSource component is added to the GameObject
         if (playContinuousSound && continuousSound != null)
         {
@@ -33,9 +41,9 @@ public class SlideShow : MonoBehaviour
     {
         yield return new WaitForSeconds(startGap);
 
-        for (currentSpriteIndex = 0; currentSpriteIndex < allSprites.Length; currentSpriteIndex++)
+        for (currentSpriteIndex = 0; currentSpriteIndex < slides.Length; currentSpriteIndex++)
         {
-            image.sprite = allSprites[currentSpriteIndex];
+            slides[currentSpriteIndex].SetActive(true);
 
             // Play the sound for the current slide if not playing continuous sound
             if (!playContinuousSound && slideSounds != null && currentSpriteIndex < slideSounds.Length && slideSounds[currentSpriteIndex] != null)
@@ -56,6 +64,8 @@ public class SlideShow : MonoBehaviour
                 continue;
             }
         }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void Update()

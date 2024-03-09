@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Core/Scenes/Florin_MainMenu.unity
     guid: cda06e0f99b3c9b4ab48229fe43d9268
   - enabled: 1
+    path: Assets/Core/Scenes/SlideShow.unity
+    guid: 371c6716cb6577f4f821735474706e9c
+  - enabled: 1
     path: Assets/Core/Scenes/Florin_GameplayScene.unity
     guid: a91f916b55b30ec449525d8dff6aa188
   m_configObjects: {}
