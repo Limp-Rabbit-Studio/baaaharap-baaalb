@@ -27,6 +27,16 @@ public class DashCollisionHandler : MonoBehaviour
         {
             sheepDashAttackScript.StopDash();
         }
+        if (other.CompareTag("Hareless"))
+        {
+            HarelessBoss hb = other.GetComponent<HarelessBoss>();
+            if (hb != null)
+            {
+                sheepDashAttackScript.ResetCooldown();
+                hb.Hit();
+                audioSource.PlayOneShot(bangSound);
+            }
+        }
         // Debug.Log("Collided with: " + other.name + "    " + other.tag + "     " + sheepDashAttackScript.IsDashing + "   " + other.GetComponent<EnemyStats>());
         if (other.CompareTag("Enemy"))
         {

@@ -27,9 +27,12 @@ public class RabbitEnemyAI : MonoBehaviour
 
     private void Start()
     {
-        AIanim  = GetComponent<Animator>();
-        float scaleRand = Random.Range(-.1f, .1f);
-        transform.localScale = Vector3.one + new Vector3(scaleRand, scaleRand, scaleRand);
+        AIanim = GetComponent<Animator>();
+        if (transform.localScale == Vector3.one)
+        {
+            float scaleRand = Random.Range(-.1f, .1f);
+            transform.localScale = Vector3.one + new Vector3(scaleRand, scaleRand, scaleRand);
+        }
         AIanim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
@@ -89,7 +92,7 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] Vector3 newLoc;
     [SerializeField] Vector3 delta;
     void DoSimpleJump()
-    {       
+    {
         distanceX = Random.Range(-jumpRadius, jumpRadius);
         distanceZ = Random.Range(-jumpRadius, jumpRadius);
         crtLoc = transform.position;
@@ -133,5 +136,18 @@ public class RabbitEnemyAI : MonoBehaviour
             rb.AddForce(new Vector3(jumpVector.x, jumpForce, jumpVector.z), ForceMode.Impulse);
             divisionJumpCount[targetDivision]++; // Increment the jump count for the chosen division
         }
+    }
+
+    public void CreateEnemyStats()
+    {
+        shootingRange = Random.Range(10f, 30f);
+        shootingInterval = Random.Range(1f, 4f);
+        jumpForce = Random.Range(6f, 9f);
+        jumpInterval = Random.Range(1.8f, 2.2f);
+        jumpRadius = Random.Range(18f, 35f);
+        projectileForce = Random.Range(10f, 80f);
+        projectileLifetime = Random.Range(2f, 8f);
+        float scaleRand = Random.Range(0f, 4f);
+        transform.localScale = Vector3.one + new Vector3(scaleRand, scaleRand, scaleRand);
     }
 }

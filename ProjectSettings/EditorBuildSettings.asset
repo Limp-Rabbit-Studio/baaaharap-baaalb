@@ -6,13 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Core/Scenes/1 MainMenu.unity
+    path: Assets/Core/Scenes/0 MainMenu.unity
     guid: cda06e0f99b3c9b4ab48229fe43d9268
   - enabled: 1
-    path: Assets/Core/Scenes/2 SlideShow.unity
+    path: Assets/Core/Scenes/1 SlideShow.unity
     guid: 371c6716cb6577f4f821735474706e9c
   - enabled: 1
     path: Assets/Core/Scenes/Florin_GameplayScene.unity
     guid: a91f916b55b30ec449525d8dff6aa188
+  - enabled: 1
+    path: Assets/Core/Scenes/3 Ending.unity
+    guid: 0b0cc238de80a8e4581cab18ca318d1f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
