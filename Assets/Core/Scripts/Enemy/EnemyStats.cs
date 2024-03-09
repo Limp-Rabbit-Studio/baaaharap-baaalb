@@ -7,6 +7,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     public float currentHealth;
 
+    private void Update()
+    {
+        Debug.Log("Enemy Health: " + currentHealth);
+    }
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -39,8 +44,8 @@ public class EnemyStats : MonoBehaviour, IDamageable
     }
 
     private void Die()
-    {
-        // Destroy(gameObject);
+    {   
+         Destroy(gameObject);
         // gameObject.SetActive(false);
     }
 }
