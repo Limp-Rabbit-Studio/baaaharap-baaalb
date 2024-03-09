@@ -60,6 +60,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: _isGrounded
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: _isWalking
     m_EventTreshold: 0
@@ -129,9 +132,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: _isJumping
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: _isGrounded
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8769648234830396710}
   m_Solo: 0
@@ -194,7 +194,7 @@ AnimatorStateMachine:
     m_Position: {x: 1100, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8652143160998396679}
-    m_Position: {x: 1320, y: -520, z: 0}
+    m_Position: {x: 750, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8890925129912079984}
     m_Position: {x: 870, y: -520, z: 0}
@@ -469,6 +469,15 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: _isGrounded
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: _isJumping
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: _isGliding
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: _isDead
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5752645793588867362}
