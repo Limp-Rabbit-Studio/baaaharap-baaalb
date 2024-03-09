@@ -47,7 +47,7 @@ public class PlayerGlide : MonoBehaviour
 
     void PlayGlideSound()
     {
-        AudioSource.PlayClipAtPoint(glideAudioClip, transform.position, glideAudioVolume);
+        // AudioSource.PlayClipAtPoint(glideAudioClip, transform.position, glideAudioVolume);
     }
 
     void StopGlideSound()

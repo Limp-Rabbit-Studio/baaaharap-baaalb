@@ -34,7 +34,9 @@ public class SlideShow : MonoBehaviour
             audioSource.loop = true; // Loop the continuous sound
             audioSource.Play();
         }
-        StartCoroutine(PlaySlideShow());
+        // StartCoroutine(PlaySlideShow());
+        slideIndex = 0;
+        slides[slideIndex].SetActive(true);
     }
 
     IEnumerator PlaySlideShow()
@@ -68,11 +70,22 @@ public class SlideShow : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    int slideIndex = 0;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            skipRequested = true;
+            // skipRequested = true;
+            slideIndex++;
+            if (slideIndex >= slides.Length)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                slides[slideIndex - 1].SetActive(false);
+                slides[slideIndex].SetActive(true);
+            }
         }
     }
 }

@@ -124,6 +124,7 @@ MonoBehaviour:
   jumpRadius: 5
   projectileForce: 10
   projectileLifetime: 5
+  maxDistanceFromSpawn: 30
 --- !u!1 &1539230765838916018
 GameObject:
   m_ObjectHideFlags: 0
