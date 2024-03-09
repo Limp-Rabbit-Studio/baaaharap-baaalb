@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
+    Animator animctrl;
+
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private HealthBar healthBar;
-
+    int isDeadHash;
     private float currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetSliderMax(maxHealth);
+        animctrl = GetComponentInChildren<Animator>();
+        isDeadHash = Animator.StringToHash("_isDead");
+
     }
 
     private void Update()
@@ -48,6 +53,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log("Player has died.");
-        // Handle death (animations, game over screen, etc.)
+        animctrl.SetBool(isDeadHash, true);
+
+        // Handle death (choose better animation,game over screen, etc.)
     }
 }

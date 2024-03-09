@@ -52,6 +52,8 @@ namespace StarterAssets
         private bool _isGliding;
         private bool _isWalking;
 
+        int isWalkingHash;
+        int isJumpingHash;
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -97,7 +99,8 @@ namespace StarterAssets
 #else
             Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-
+            isWalkingHash = Animator.StringToHash("_isWalking");
+            isJumpingHash = Animator.StringToHash("_isJumping");
             AssignAnimationIDs();
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -110,21 +113,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-
-            if (Input.GetKeyDown(KeyCode.X) && !_isGliding && !Grounded)
-            {
-                StartGlide();
-            }
-            else if (_isGliding && Grounded)
-            {
-                StopGlide();
-            }
-
-            if (_isGliding)
-            {
-
-                Glide();
-            }
         }
 
         private void LateUpdate()
@@ -196,8 +184,13 @@ namespace StarterAssets
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                animator.SetBool(isWalkingHash, true);
             }
-
+            else
+            {
+                // Player is not walking, set the walking animation parameter to false
+                animator.SetBool(isWalkingHash, false);
+            }
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
             if (!_isGliding)
             {
@@ -220,11 +213,12 @@ namespace StarterAssets
             if (Grounded)
             {
                 _fallTimeoutDelta = FallTimeout;
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
-                }
+                animator.SetBool(isJumpingHash, false);
+                //if (_hasAnimator)
+                //{
+                //    _animator.SetBool(_animIDJump, false);
+                //    _animator.SetBool(_animIDFreeFall, false);
+                //}
                 OnSoundReady();
                 if (_verticalVelocity < 0.0f)
                 {
@@ -233,6 +227,7 @@ namespace StarterAssets
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    animator.SetBool(isJumpingHash, true);
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
@@ -246,7 +241,7 @@ namespace StarterAssets
             }
             else
             {
-                animator.SetBool("_isJumping", true);
+                animator.SetBool(isJumpingHash, true);
 
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
@@ -255,7 +250,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    animator.SetBool("_isJumping", false);
+                    //animator.SetBool("_isJumping", false);
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDFreeFall, true);
@@ -266,45 +261,6 @@ namespace StarterAssets
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
-            }
-        }
-        // Glide Mechanic
-        private void StartGlide()
-        {
-            _isGliding = true;
-            animator.SetBool("_isGliding", _isGliding);
-            // Set a slight downward vertical velocity to initiate the glide descent
-            _verticalVelocity = Mathf.Max(_verticalVelocity, -1f);
-        }
-
-        private void StopGlide()
-        {
-            _isGliding = false;
-            animator.SetBool("_isGliding", _isGliding);
-            // Reset vertical velocity to start normal gravity effect
-            _verticalVelocity = 0f;
-        }
-
-        private void Glide()
-        {
-            if (_isGliding)
-            {
-                // Improved glide mechanics with falling to gain speed
-                float glideFallSpeed = Mathf.Abs(_verticalVelocity); // Use absolute value to get positive speed
-                float forwardGlideSpeed = GlideSpeed + glideFallSpeed; // Increase forward speed by the falling speed
-
-                // Apply gravity at a reduced rate while gliding
-                _verticalVelocity += Gravity * Time.deltaTime * 0.25f;
-
-                // Forward movement based on the player's facing direction
-                Vector3 moveDirection = transform.forward * forwardGlideSpeed;
-                // Downward movement based on the current vertical velocity
-                Vector3 verticalMove = Vector3.up * _verticalVelocity;
-                // Combine the movement vectors
-                Vector3 glideMovement = moveDirection + verticalMove;
-
-                // Move the character controller
-                _controller.Move(glideMovement * Time.deltaTime);
             }
         }
 

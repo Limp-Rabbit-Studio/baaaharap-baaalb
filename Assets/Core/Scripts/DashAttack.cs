@@ -10,7 +10,7 @@ public class SheepDashAttack : MonoBehaviour
     public float dashCooldown = 1f;
     private CharacterController characterController;
     private float cooldownTimer;
-
+    int isDashingHash;
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -23,6 +23,7 @@ public class SheepDashAttack : MonoBehaviour
     private void Start()
     {
         animctrl = GetComponentInChildren<Animator>();
+        isDashingHash = Animator.StringToHash("_isDashing");
     }
 
     void Update()
@@ -41,7 +42,7 @@ public class SheepDashAttack : MonoBehaviour
 
     IEnumerator DoDash()
     {
-        animctrl.SetBool("_isDashing", true);
+        animctrl.SetBool(isDashingHash, true);
         float startTime = Time.time;
         Vector3 dashDirection = transform.forward * dashSpeed;
 
@@ -50,7 +51,7 @@ public class SheepDashAttack : MonoBehaviour
             characterController.Move(dashDirection * Time.deltaTime);
             yield return null; // Wait for the next frame
         }
-        animctrl.SetBool("_isDashing", false);
-
+        animctrl.SetBool(isDashingHash, false);
+        Debug.Log("Dash is done - SheepDashAttack");
     }
 }

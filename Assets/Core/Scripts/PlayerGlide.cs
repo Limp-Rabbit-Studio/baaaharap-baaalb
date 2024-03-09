@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class PlayerGlide : MonoBehaviour
 {
+    Animator animator;
     ThirdPersonController controller;
+    int isGlidingHash;
+    float airTime;
 
     void Awake()
     {
@@ -15,7 +18,8 @@ public class PlayerGlide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponentInChildren<Animator>();
+        isGlidingHash = Animator.StringToHash("_isGliding");
     }
 
     // Update is called once per frame
@@ -23,10 +27,12 @@ public class PlayerGlide : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetBool(isGlidingHash, true);
             controller.Gravity = -8;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            animator.SetBool(isGlidingHash, false);
             controller.Gravity = -15;
         }
     }
