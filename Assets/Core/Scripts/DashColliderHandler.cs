@@ -7,10 +7,7 @@ public class DashCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with: " + other.name);
-        Debug.Log("Dash Collision: Trigger entered.");
-        // Respond only to objects tagged as "Enemy"
-        Debug.Log("Is Dashing" + sheepDashAttackScript.IsDashing);
+        Debug.Log("Collided with: " + other.name + "    " + other.tag + "     " + sheepDashAttackScript.IsDashing + "   " + other.GetComponent<EnemyStats>());
         if (other.CompareTag("Enemy") && sheepDashAttackScript.IsDashing)
         {
             EnemyStats enemy = other.GetComponent<EnemyStats>();
