@@ -13,6 +13,7 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] private float jumpRadius = 5f;
     [SerializeField] private float projectileForce = 10f;
     [SerializeField] private float projectileLifetime = 5f;
+    [SerializeField] private float maxDistanceFromSpawn = 5f;
 
     private float timeSinceLastShot = 0f;
     private float timeSinceLastJump = 0f;
@@ -66,20 +67,31 @@ public class RabbitEnemyAI : MonoBehaviour
             float angleToPlayer = Mathf.Atan2(directionToPlayer.z, directionToPlayer.x) * Mathf.Rad2Deg;
             angleToPlayer = (angleToPlayer + 360) % 360;
             int playerDivision = (int)(angleToPlayer / 90);
-            int adjacentDivision = (playerDivision + 1) % 4;
-            int targetDivision = Random.Range(0, 2) == 0 ? playerDivision : adjacentDivision;
+
+            // Choose a random division to jump towards
+            int targetDivision = Random.Range(0, 4);
+
+            // Avoid obstacles in the chosen division
+            if (divisionJumpCount[playerDivision] >= divisionJumpCount[targetDivision])
+            {
+                targetDivision = (targetDivision + 2) % 4; // Jump to the opposite side
+            }
+
             float jumpAngle = targetDivision * 90f + Random.Range(0, 90f);
             Vector2 jumpDirection = new Vector2(Mathf.Cos(jumpAngle * Mathf.Deg2Rad), Mathf.Sin(jumpAngle * Mathf.Deg2Rad));
             Vector3 jumpVector = new Vector3(jumpDirection.x, 0, jumpDirection.y) * jumpRadius;
 
-            rb.AddForce(new Vector3(jumpVector.x, jumpForce, jumpVector.z), ForceMode.Impulse);
-            timeSinceLastJump = 0f;
+            // Calculate the potential new position after the jump
+            Vector3 potentialNewPosition = transform.position + new Vector3(jumpVector.x * jumpForce, 0, jumpVector.z * jumpForce);
 
-            for (int i = 0; i < divisionJumpCount.Length; i++)
+            // Check if the new position would be within the allowed radius from the spawn point
+            if (Vector3.Distance(spawnPoint.position, potentialNewPosition) <= maxDistanceFromSpawn)
             {
-                divisionJumpCount[i] = i == targetDivision ? 1 : 0;
+                rb.AddForce(new Vector3(jumpVector.x, jumpForce, jumpVector.z), ForceMode.Impulse);
+                divisionJumpCount[targetDivision]++; // Increment the jump count for the chosen division
             }
-            lastJumpDivision = targetDivision;
+
+            timeSinceLastJump = 0f;
         }
     }
 }

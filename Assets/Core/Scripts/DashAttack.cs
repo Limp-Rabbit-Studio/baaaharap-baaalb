@@ -9,9 +9,12 @@ public class SheepDashAttack : MonoBehaviour
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
     public float damage = 10f;
+    public AudioClip swooshSound;
+    public AudioClip bangSound;
     private CharacterController characterController;
     private float cooldownTimer;
     private bool isDashing = false;
+    private AudioSource audioSource;
 
     // Make the isDashing property public so it can be accessed from the DashCollisionHandler
     public bool IsDashing
@@ -29,6 +32,11 @@ public class SheepDashAttack : MonoBehaviour
         else
         {
             Debug.Log("SheepDashAttack: CharacterController found.");
+        }
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("SheepDashAttack: No AudioSource found. Please attach an AudioSource to the GameObject.");
         }
     }
 
@@ -53,8 +61,10 @@ public class SheepDashAttack : MonoBehaviour
             Debug.Log("SheepDashAttack: Dash initiated.");
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
-
             signifier.SetActive(false);
+
+            // Play swoosh sound
+            audioSource.PlayOneShot(swooshSound);
         }
 
         if (cooldownTimer > 0f)

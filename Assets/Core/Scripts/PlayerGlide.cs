@@ -10,9 +10,15 @@ public class PlayerGlide : MonoBehaviour
     int isGlidingHash;
     float airTime;
 
+    [SerializeField] private AudioClip glideAudioClip;
+    [SerializeField] private float glideAudioVolume = 0.7f;
+
+    private AudioSource glideAudioSource; // To keep track of the playing sound
+
     void Awake()
     {
         controller = GetComponent<ThirdPersonController>();
+        glideAudioSource = GetComponent<AudioSource>(); // Store in temp variable
     }
 
     // Start is called before the first frame update
@@ -29,11 +35,27 @@ public class PlayerGlide : MonoBehaviour
         {
             animator.SetBool(isGlidingHash, true);
             controller.Gravity = -8;
+            PlayGlideSound();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             animator.SetBool(isGlidingHash, false);
             controller.Gravity = -15;
+            StopGlideSound();
+        }
+    }
+
+    void PlayGlideSound()
+    {
+        AudioSource.PlayClipAtPoint(glideAudioClip, transform.position, glideAudioVolume);
+    }
+
+    void StopGlideSound()
+    {
+        if (glideAudioSource != null)
+        {
+            glideAudioSource.Stop();
+            glideAudioSource = null;
         }
     }
 }
