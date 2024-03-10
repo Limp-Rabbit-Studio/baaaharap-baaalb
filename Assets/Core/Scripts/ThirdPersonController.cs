@@ -92,6 +92,8 @@ namespace StarterAssets
 
         private void Start()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+
             walkAudioSource = gameObject.AddComponent<AudioSource>();
             jumpAudioSource = gameObject.AddComponent<AudioSource>();
 
