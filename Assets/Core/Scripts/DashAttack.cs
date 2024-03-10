@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -118,5 +119,12 @@ public class SheepDashAttack : MonoBehaviour
         {
             // Debug.Log("SheepDashAttack: No longer dashing.");
         }
+    }
+
+    public void Upgrade()
+    {
+        dashSpeed *= 1.1f;
+        dashTime *= 1.1f;
+        dashCooldown *= .85f;
     }
 }
