@@ -9,6 +9,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private GameObject vfxDeath;
 
     public float currentHealth;
 
@@ -58,6 +59,9 @@ public class EnemyStats : MonoBehaviour, IDamageable
         {
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
         }
+        GameObject go = Instantiate(vfxDeath);
+        go.transform.position = transform.position;
+        Destroy(go, 5f);
         Destroy(gameObject);
         // gameObject.SetActive(false);
     }
