@@ -13,7 +13,7 @@ public class Fire : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has the "Player" tag and is not the shooter
-        if (other.CompareTag("Player") && !other.CompareTag(shooterTag))
+        if ((other.CompareTag("Player") || other.CompareTag("PlayerDash")) && !other.CompareTag(shooterTag))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)

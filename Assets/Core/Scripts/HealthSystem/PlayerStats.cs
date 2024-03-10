@@ -16,7 +16,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        EnsureHealthBounds();
+        // DO NOT ENSURE HEALTH BOUNDS - DEBUG REASONS
+        // EnsureHealthBounds();
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            currentHealth += 100;
+            healthBar.SetSlider(currentHealth);
+        }
     }
 
     public void TakeDamage(float amount)

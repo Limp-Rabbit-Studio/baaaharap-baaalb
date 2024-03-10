@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Enemy
   - Hareless
+  - PlayerDash
   layers:
   - Default
   - TransparentFX
