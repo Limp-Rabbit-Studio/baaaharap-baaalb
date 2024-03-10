@@ -75,9 +75,12 @@ public class EnemyStats : MonoBehaviour, IDamageable
         {
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
         }
-        GameObject go = Instantiate(vfxDeath);
-        go.transform.position = transform.position;
-        Destroy(go, .8f);
+        if (vfxDeath != null)
+        {
+            GameObject go = Instantiate(vfxDeath);
+            go.transform.position = transform.position;
+            Destroy(go, .8f);
+        }
         Destroy(gameObject);
         // gameObject.SetActive(false);
     }
