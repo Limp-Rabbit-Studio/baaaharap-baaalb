@@ -5,6 +5,7 @@ using UnityEngine;
 public class MsSunday : MonoBehaviour
 {
     MsSundayManager msManager;
+    [SerializeField] private Transform player;
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class MsSunday : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -30,6 +31,9 @@ public class MsSunday : MonoBehaviour
             }
             hasPlayer = null;
         }
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        transform.LookAt(targetPosition);
     }
 
     GameObject hasPlayer = null;
