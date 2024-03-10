@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyStats : MonoBehaviour, IDamageable
 {
@@ -32,6 +33,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             Die();
+            HarelessBoss hboos = gameObject.GetComponent<HarelessBoss>();
+            if (hboos != null)
+            {
+                SceneManager.LoadScene(3);
+            }
         }
         else
         {
