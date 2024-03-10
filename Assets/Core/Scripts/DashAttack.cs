@@ -13,6 +13,7 @@ public class SheepDashAttack : MonoBehaviour
     private CharacterController characterController;
     private float cooldownTimer;
     private bool isDashing = false;
+    private AudioSource audioSource;
 
     public bool IsDashing
     {

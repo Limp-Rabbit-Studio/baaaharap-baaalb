@@ -1,10 +1,21 @@
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
+
 
 public class DashCollisionHandler : MonoBehaviour
 {
     public SheepDashAttack sheepDashAttackScript;
     public AudioClip bangSound;
+    private AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            // Debug.LogError("DashCollisionHandler: No AudioSource found. Please attach an AudioSource to the GameObject.");
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!sheepDashAttackScript.IsDashing)

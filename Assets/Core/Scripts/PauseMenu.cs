@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     #region - Initializer
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(false);
     }
     #endregion
