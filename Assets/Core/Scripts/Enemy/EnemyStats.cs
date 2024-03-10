@@ -29,19 +29,24 @@ public class EnemyStats : MonoBehaviour, IDamageable
     {
         Debug.Log("EnemyStats: TakeDamage called with amount: " + amount);
         currentHealth -= amount;
-        if (healthBar != null)
-        {
-            healthBar.SetSlider(currentHealth);
-        }
-        if (damageSound != null)
-        {
-            AudioSource.PlayClipAtPoint(damageSound, transform.position);
-        }
         if (currentHealth <= 0)
         {
             Die();
         }
+        else
+        {
+            BossTag bossTag = GetComponent<BossTag>();
+            if (bossTag != null)
+            {
+                HarelessBoss harelessBoss = GetComponent<HarelessBoss>();
+                if (harelessBoss != null)
+                {
+                    harelessBoss.OnHit();
+                }
+            }
+        }
     }
+
 
     public void Heal(float amount)
     {

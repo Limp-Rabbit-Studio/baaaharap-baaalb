@@ -28,7 +28,7 @@ public class HarelessBoss : MonoBehaviour
         if (positionChangeTimer <= 0)
         {
             DashToRandomPosition();
-            positionChangeTimer = positionChangeInterval + stayDuration; // Reset timer to include stay duration
+            positionChangeTimer = positionChangeInterval + stayDuration;
         }
     }
 
@@ -51,10 +51,9 @@ public class HarelessBoss : MonoBehaviour
             yield return null;
         }
 
-        rb.position = targetPosition; // Ensure the boss reaches the target position
+        rb.position = targetPosition;
     }
 
-    // Call this method when the boss is hit
     public void OnHit()
     {
         StartCoroutine(PerformHitReactionDashes());
