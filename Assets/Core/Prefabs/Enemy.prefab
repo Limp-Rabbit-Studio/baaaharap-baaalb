@@ -118,7 +118,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 2609380053398032386}
   spawnPoint: {fileID: 7387506524163176793}
   shootingRange: 20
-  shootingInterval: 0.8
+  shootingInterval: 1.4
   jumpForce: 5
   jumpInterval: 2
   jumpRadius: 5
