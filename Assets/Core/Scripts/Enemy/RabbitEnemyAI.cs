@@ -20,7 +20,6 @@ public class RabbitEnemyAI : MonoBehaviour
     private int lastJumpDivision = -1;
 
     public Animator AIanim;
-    int AIisJumpingHash;
     float actualJumpInterval;
 
     [SerializeField] private Transform player;
@@ -37,7 +36,6 @@ public class RabbitEnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
-        AIisJumpingHash = Animator.StringToHash("AI_isJumping");
         actualJumpInterval = jumpInterval + Random.Range(-.2f, .2f);
     }
 

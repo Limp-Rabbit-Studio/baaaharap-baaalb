@@ -5,15 +5,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private HealthBar healthBar;
     private Animator animctrl; // From the first script
-    private int isDeadHash; // From the first script
     private float currentHealth;
-
+    public bool isDead = false;
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetSliderMax(maxHealth);
         animctrl = GetComponentInChildren<Animator>(); // From the first script
-        isDeadHash = Animator.StringToHash("_isDead"); // From the first script
     }
 
     private void Update()
@@ -53,8 +51,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         Debug.Log("Player has died."); // Using the log from the first script
         if (animctrl != null) // Added a null-check for the Animator
         {
-            animctrl.SetBool(isDeadHash, true);
+            animctrl.SetBool("_isDead", true);
         }
-        // Handle death (choose better animation, game over screen, etc.)
+        isDead = true;
     }
+
 }

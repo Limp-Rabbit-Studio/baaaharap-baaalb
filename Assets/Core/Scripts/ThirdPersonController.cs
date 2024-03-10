@@ -58,10 +58,6 @@ namespace StarterAssets
         private bool _isGliding;
         private bool _isWalking;
 
-        int isWalkingHash;
-        int isJumpingHash;
-        int isGroundedHash;
-
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -116,9 +112,6 @@ namespace StarterAssets
 #else
             Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-            isWalkingHash = Animator.StringToHash("_isWalking");
-            isJumpingHash = Animator.StringToHash("_isJumping");
-            isGroundedHash = Animator.StringToHash("_isGrounded");
             AssignAnimationIDs();
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -177,7 +170,7 @@ namespace StarterAssets
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-            animator.SetBool(isGroundedHash, Grounded);
+            animator.SetBool("_isGrounded", Grounded);
         }
 
         private void CameraRotation()
@@ -224,11 +217,11 @@ namespace StarterAssets
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                animator.SetBool(isWalkingHash, true);
+                animator.SetBool("_isWalking", true);
             }
             else
             {
-                animator.SetBool(isWalkingHash, false);
+                animator.SetBool("_isWalking", false);
             }
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
             if (!_isGliding)
