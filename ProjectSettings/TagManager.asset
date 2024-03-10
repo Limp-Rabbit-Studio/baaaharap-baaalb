@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Hareless
   - PlayerDash
+  - MsSundayManager
   layers:
   - Default
   - TransparentFX

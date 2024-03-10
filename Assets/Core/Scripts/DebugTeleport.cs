@@ -18,10 +18,10 @@ public class DebugTeleport : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T) && teleportLocation != null)
         {
-            Debug.Log("press T for teleportn");
+            // Debug.Log("press T for teleportn");
             if (player != null)
             {
-                Debug.Log("tele mow");
+                // Debug.Log("tele mow");
                 player.transform.position = teleportLocation.transform.position;
             }
         }

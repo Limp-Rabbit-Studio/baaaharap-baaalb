@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MsSunday : MonoBehaviour
 {
+    MsSundayManager msManager;
+
     private void Awake()
     {
-
+        msManager = GameObject.FindGameObjectWithTag("MsSundayManager").GetComponent<MsSundayManager>();
     }
 
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class MsSunday : MonoBehaviour
     {
         if (hasPlayer && Input.GetKeyDown(KeyCode.E))
         {
-            MsSundayManager.Instance.ActivateHug(gameObject);
+            msManager.ActivateHug(gameObject);
             PlayerUpgrade pu = hasPlayer.GetComponent<PlayerUpgrade>();
             //if (pu != null)
             {
@@ -36,7 +38,7 @@ public class MsSunday : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             hasPlayer = other.gameObject;
-            MsSundayManager.Instance.DisplayDialog();
+            msManager.DisplayDialog();
         }
     }
 
@@ -45,7 +47,7 @@ public class MsSunday : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             hasPlayer = null;
-            MsSundayManager.Instance.HideDialog();
+            msManager.HideDialog();
         }
     }
 }

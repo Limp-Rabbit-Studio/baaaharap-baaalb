@@ -60,6 +60,13 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+    public static void DestroySingleton()
+    {
+        // Destroy(m_Instance);
+        Destroy(m_Instance.gameObject);
+        m_Instance = null;
+    }
+
     private void OnApplicationQuit()
     {
         m_ShuttingDown = true;

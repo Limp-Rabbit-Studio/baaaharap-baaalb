@@ -1,16 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class MsSundayManager : Singleton<MsSundayManager>
+public class MsSundayManager : MonoBehaviour
 {
     [SerializeField] GameObject dialogObject;
     [SerializeField] GameObject fadeScreen;
     [SerializeField] GameObject illustration1;
     [SerializeField] GameObject illustration2;
 
-    public override void Awake()
+    void Awake()
     {
-        base.Awake();
         dialogObject.SetActive(false);
         fadeScreen.SetActive(false);
         illustration1.SetActive(false);
@@ -20,13 +19,13 @@ public class MsSundayManager : Singleton<MsSundayManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void DisplayDialog()

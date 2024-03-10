@@ -68,12 +68,14 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        CleanUp();
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
     public void Restart()
     {
+        CleanUp();
         Time.timeScale = 1f;
         SceneManager.LoadScene(2);
     }
@@ -81,6 +83,10 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    void CleanUp()
+    {
     }
 }
 #endregion
