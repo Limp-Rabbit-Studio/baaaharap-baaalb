@@ -660,6 +660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34cae876426b594fa9eb216f50df610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textures:
+  - {fileID: 2800000, guid: e0108d3b6460a5c41953e8dd99a95531, type: 3}
+  - {fileID: 2800000, guid: a9bc82e6c00e4ec4fa1943a0a02feacc, type: 3}
+  - {fileID: 2800000, guid: 251f5128f17b91346b38d6b4a20d8aec, type: 3}
+  - {fileID: 2800000, guid: d49618b1a6907a84a8971344f4e657c7, type: 3}
+  - {fileID: 2800000, guid: 9927e1207c9b8c24d947433936459e46, type: 3}
+  - {fileID: 2800000, guid: be2cec430dc34b947947a5249bd831d9, type: 3}
 --- !u!114 &8751759212291435569
 MonoBehaviour:
   m_ObjectHideFlags: 0
