@@ -446,7 +446,7 @@ MonoBehaviour:
   walkVolume: 0.3
   jumpVolume: 0.5
   MoveSpeed: 12
-  SprintSpeed: 50
+  SprintSpeed: 12
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   JumpHeight: 1.2
