@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -166,10 +167,31 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
+        bool delayedgrounded;
+        bool prevgroundedstate;
+
         private void GroundedCheck()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+            bool isground = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            if (prevgroundedstate && !isground)
+            {
+                StartCoroutine(CoyoteJump(isground));
+            }
+            else
+            {
+                prevgroundedstate = isground;
+                Grounded = isground;
+                animator.SetBool("_isGrounded", Grounded);
+            }
+        }
+
+        IEnumerator CoyoteJump(bool isground)
+        {
+            yield return new WaitForSeconds(.5f);
+            prevgroundedstate = isground;
+            Grounded = isground;
             animator.SetBool("_isGrounded", Grounded);
         }
 
@@ -251,11 +273,12 @@ namespace StarterAssets
                 }
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
+                    Grounded = false;
                     Debug.Log("Attempting to play jump sound.");
                     jumpAudioSource.PlayOneShot(jumpSound, jumpVolume);
 
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                    
+
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);

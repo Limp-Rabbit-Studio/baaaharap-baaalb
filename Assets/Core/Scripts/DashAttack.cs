@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SheepDashAttack : MonoBehaviour
 {
-    public GameObject signifier;
     public Animator anim;
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
@@ -13,6 +12,7 @@ public class SheepDashAttack : MonoBehaviour
     private CharacterController characterController;
     private float cooldownTimer;
     private bool isDashing = false;
+    public GameObject vfx;
     private AudioSource audioSource;
 
     public bool IsDashing
@@ -36,10 +36,6 @@ public class SheepDashAttack : MonoBehaviour
         {
             // Debug.LogError("SheepDashAttack: No AudioSource found. Please attach an AudioSource to the GameObject.");
         }
-    }
-
-    private void Start()
-    {
         anim = GetComponentInChildren<Animator>();
         if (anim == null)
         {
@@ -49,7 +45,12 @@ public class SheepDashAttack : MonoBehaviour
         {
             // Debug.Log("SheepDashAttack: Animator component found.");
         }
-        signifier.SetActive(false);
+        vfx.SetActive(false);
+        cooldownTimer = dashCooldown;
+    }
+
+    private void Start()
+    {
     }
 
     void Update()
@@ -59,7 +60,7 @@ public class SheepDashAttack : MonoBehaviour
             // Debug.Log("SheepDashAttack: Dash initiated.");
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
-            signifier.SetActive(false);
+            vfx.SetActive(false);
             AudioSource.PlayClipAtPoint(swooshSound, transform.position);
         }
 
@@ -68,7 +69,7 @@ public class SheepDashAttack : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
             if (cooldownTimer <= 0f)
             {
-                signifier.SetActive(true);
+                vfx.SetActive(true);
             }
         }
     }
@@ -76,7 +77,7 @@ public class SheepDashAttack : MonoBehaviour
     public void ResetCooldown()
     {
         cooldownTimer = 0f;
-        signifier.SetActive(true);
+        vfx.SetActive(true);
     }
 
     public void StopDash()

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9210679136020225548}
   m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: PlayerDash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,13 +587,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffb4a443210f914c84e74424b8d8c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signifier: {fileID: 8957681784044125393}
   anim: {fileID: 6587261341607630512}
   dashSpeed: 30
   dashTime: 0.2
   dashCooldown: 3
   damage: 10
   swooshSound: {fileID: 8300000, guid: a71e0352148826749befda3991f4eabd, type: 3}
+  vfx: {fileID: 8957681784044125393}
 --- !u!114 &6118678125168643298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,8 +606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a06cec5a075a24b90116583162e2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 100
   healthBar: {fileID: 0}
+  isDead: 0
 --- !u!114 &330640030021720030
 MonoBehaviour:
   m_ObjectHideFlags: 0
