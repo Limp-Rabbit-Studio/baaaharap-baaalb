@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class SlideShow : MonoBehaviour
 {
-
     [SerializeField] private GameObject[] slides;
     // [SerializeField] private Image image;
     // [SerializeField] private Sprite[] allSprites;
@@ -58,12 +57,12 @@ public class SlideShow : MonoBehaviour
             if (skipRequested)
             {
                 skipRequested = false;
-                // Play the transition sound if space was pressed
+                // Play the transition sound if 'X' was pressed
                 if (transitionSound != null)
                 {
                     audioSource.PlayOneShot(transitionSound);
                 }
-                continue;
+                break; // Immediately exit the loop to skip all slides
             }
         }
 
@@ -75,7 +74,6 @@ public class SlideShow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // skipRequested = true;
             slideIndex++;
             if (slideIndex >= slides.Length)
             {
@@ -86,6 +84,11 @@ public class SlideShow : MonoBehaviour
                 slides[slideIndex - 1].SetActive(false);
                 slides[slideIndex].SetActive(true);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            skipRequested = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
