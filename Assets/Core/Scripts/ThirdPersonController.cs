@@ -11,14 +11,20 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+
+        public AudioClip jumpSound;
+        public AudioClip walkSound;
+        private AudioSource walkAudioSource;
+        private AudioSource jumpAudioSource;
+
+        [Range(0f, 1f)] public float walkVolume = 1f;
+        [Range(0f, 1f)] public float jumpVolume = 1f;
+
         Animator animator;
         public float MoveSpeed = 2.0f;
         public float SprintSpeed = 5.335f;
         public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        public float FootstepAudioVolume = 1f;
         public float JumpHeight = 1.2f;
         public float Gravity = -15.0f;
         public float JumpTimeout = 0.50f;
@@ -89,6 +95,15 @@ namespace StarterAssets
 
         private void Start()
         {
+            walkAudioSource = gameObject.AddComponent<AudioSource>();
+            jumpAudioSource = gameObject.AddComponent<AudioSource>();
+
+            // Configure the audio sources
+            walkAudioSource.loop = true;
+            walkAudioSource.volume = walkVolume;
+            jumpAudioSource.volume = jumpVolume;
+
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
@@ -113,9 +128,35 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+
+            HandleSounds();
+            walkAudioSource.volume = walkVolume;
+            jumpAudioSource.volume = jumpVolume;
+
             JumpAndGravity();
             GroundedCheck();
             Move();
+        }
+        private void HandleSounds()
+        {
+            // Handle walking sound
+            if (Grounded && _input.move != Vector2.zero)
+            {
+                if (!walkAudioSource.isPlaying)
+                {
+                    Debug.Log("Starting to play walking sound.");
+                    walkAudioSource.clip = walkSound;
+                    walkAudioSource.Play();
+                }
+            }
+            else
+            {
+                if (walkAudioSource.isPlaying)
+                {
+                    Debug.Log("Stopping the walking sound.");
+                    walkAudioSource.Stop();
+                }
+            }
         }
 
         private void LateUpdate()
@@ -136,9 +177,7 @@ namespace StarterAssets
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
-            //_animator.SetBool(_animIDGrounded, Grounded);asdasd
             animator.SetBool(isGroundedHash, Grounded);
-
         }
 
         private void CameraRotation()
@@ -189,7 +228,6 @@ namespace StarterAssets
             }
             else
             {
-                // Player is not walking, set the walking animation parameter to false
                 animator.SetBool(isWalkingHash, false);
             }
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -214,26 +252,21 @@ namespace StarterAssets
             if (Grounded)
             {
                 _fallTimeoutDelta = FallTimeout;
-                //animator.SetBool(isJumpingHash, false);
-                //if (_hasAnimator)
-                //{
-                //    _animator.SetBool(_animIDJump, false);
-                //    _animator.SetBool(_animIDFreeFall, false);
-                //}
-                OnSoundReady();
                 if (_verticalVelocity < 0.0f)
                 {
                     _verticalVelocity = -2f;
                 }
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
+                    Debug.Log("Attempting to play jump sound.");
+                    jumpAudioSource.PlayOneShot(jumpSound, jumpVolume);
+
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                    //animator.SetBool(isJumpingHash, true);
+                    
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
-                    OnSoundPlay();
                 }
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
@@ -242,20 +275,10 @@ namespace StarterAssets
             }
             else
             {
-                // animator.SetBool(isJumpingHash, true);
-
                 _jumpTimeoutDelta = JumpTimeout;
                 if (_fallTimeoutDelta >= 0.0f)
                 {
                     _fallTimeoutDelta -= Time.deltaTime;
-                }
-                else
-                {
-                    //animator.SetBool("_isJumping", false);
-                    //if (_hasAnimator)
-                    //{
-                    //    _animator.SetBool(_animIDFreeFall, true);
-                    //}
                 }
                 _input.jump = false;
             }
@@ -279,44 +302,6 @@ namespace StarterAssets
             if (Grounded) Gizmos.color = transparentGreen;
             else Gizmos.color = transparentRed;
             Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            }
-        }
-
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-        }
-
-        private void OnSound()
-        {
-            AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-        }
-
-        bool canPlaySound = true;
-
-        void OnSoundPlay()
-        {
-            if (canPlaySound)
-            {
-                canPlaySound = false;
-                OnSound();
-            }
-        }
-
-        void OnSoundReady()
-        {
-            canPlaySound = true;
         }
     }
 }
