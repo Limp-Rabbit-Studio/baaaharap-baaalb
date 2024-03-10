@@ -9,6 +9,7 @@ TagManager:
   - Hareless
   - PlayerDash
   - MsSundayManager
+  - PlayerTrigger
   layers:
   - Default
   - TransparentFX

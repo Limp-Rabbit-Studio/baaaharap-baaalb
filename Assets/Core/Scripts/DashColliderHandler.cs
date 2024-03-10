@@ -30,7 +30,6 @@ public class DashCollisionHandler : MonoBehaviour
             if (hb != null)
             {
                 sheepDashAttackScript.ResetCooldown();
-                hb.Hit();
                 audioSource.PlayOneShot(bangSound);
             }
         }

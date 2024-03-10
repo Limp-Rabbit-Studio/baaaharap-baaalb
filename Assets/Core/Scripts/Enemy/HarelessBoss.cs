@@ -1,60 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HarelessBoss : MonoBehaviour
 {
-    SpriteRenderer sRend;
-    AudioSource audioSrc;
-    int health;
-    bool isFlashing = false;
+    public Transform[] movePositions;
+    public GameObject bulletPrefab;
+    public int bulletsToShoot = 3;
+    public float shootInterval = 2f;
+    public float moveSpeed = 5f;
+    public float positionChangeInterval = 4f;
 
-    // Start is called before the first frame update
+    private EnemyStats enemyStats;
+    private float shootTimer;
+    private float positionChangeTimer;
+    private bool isActivated = false;
+
     void Start()
     {
-        sRend = GetComponent<SpriteRenderer>();
-        audioSrc = GetComponent<AudioSource>();
-        health = 3;
-        isFlashing = false;
+        enemyStats = GetComponent<EnemyStats>();
+        shootTimer = shootInterval;
+        positionChangeTimer = positionChangeInterval;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (!isActivated || enemyStats.currentHealth <= 0) return;
 
-    }
+        shootTimer -= Time.deltaTime;
+        if (shootTimer <= 0)
+        {
+            ShootBullets();
+            shootTimer = shootInterval;
+        }
 
-    public void Hit()
-    {
-        if (isFlashing)
+        positionChangeTimer -= Time.deltaTime;
+        if (positionChangeTimer <= 0)
         {
-            return;
-        }
-        audioSrc.Play();
-        health--;
-        if (health <= 0)
-        {
-            SceneManager.LoadScene(3);
-        }
-        else
-        {
-            StartCoroutine(FlashCor());
+            ChangePosition();
+            positionChangeTimer = positionChangeInterval;
         }
     }
 
-    IEnumerator FlashCor()
+    private void ChangePosition()
     {
-        isFlashing = true;
-        yield return new WaitForEndOfFrame();
-        for (int i = 0; i < 20; i++)
+        int index = Random.Range(0, movePositions.Length);
+        transform.position = movePositions[index].position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerTrigger"))
         {
-            float cDelta = Random.Range(0, .3f);
-            sRend.color = new Color(cDelta + .4f, cDelta + .1f, cDelta);
-            yield return new WaitForSeconds(Random.Range(.05f, .1f));
-            sRend.color = Color.white;
-            yield return new WaitForSeconds(Random.Range(.05f, .1f));
+            isActivated = true;
         }
-        isFlashing = false;
+        else if (other.CompareTag("PlayerDash") && isActivated)
+        {
+            ChangePosition();
+        }
+    }
+
+    private void ShootBullets()
+    {
+        for (int i = 0; i < bulletsToShoot; i++)
+        {
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
