@@ -47,7 +47,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
                 HarelessBoss harelessBoss = GetComponent<HarelessBoss>();
                 if (harelessBoss != null)
                 {
-                    enemyanim.SetTrigger("Span_Damage");
+                    enemyanim.SetTrigger("Damage");
                     harelessBoss.OnHit();
                 }
             }

@@ -18,6 +18,7 @@ public class HarelessBoss : MonoBehaviour
     public float shotSpacing = 0.5f; // Time between individual shots in a sequence
     private float shootingTimer;
     public Animator enemyanim;
+    [SerializeField] private Transform player;
 
 
     private float positionChangeTimer;
@@ -29,6 +30,7 @@ public class HarelessBoss : MonoBehaviour
         positionChangeTimer = positionChangeInterval;
         shootingTimer = shootingInterval;
         enemyanim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -47,6 +49,9 @@ public class HarelessBoss : MonoBehaviour
             StartCoroutine(ShootSequence());
             shootingTimer = shootingInterval;
         }
+        Vector3 targetPosition = player.position;
+        targetPosition.y = transform.position.y;
+        transform.LookAt(targetPosition);
     }
     IEnumerator ShootSequence()
     {
@@ -58,7 +63,7 @@ public class HarelessBoss : MonoBehaviour
     }
     void ShootProjectile()
     {
-        enemyanim.SetTrigger("Span_Atac");
+        enemyanim.SetTrigger("Attack");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player && projectilePrefab && projectileSpawnPoint)
         {
