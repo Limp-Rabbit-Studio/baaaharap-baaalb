@@ -147,11 +147,11 @@ public class RabbitEnemyAI : MonoBehaviour
     public void CreateEnemyStats()
     {
         shootingRange = Random.Range(10f, 30f);
-        shootingInterval = Random.Range(1f, 4f);
+        shootingInterval = Random.Range(1f, 2f);
         jumpForce = Random.Range(6f, 9f);
         jumpInterval = Random.Range(1.8f, 2.2f);
         jumpRadius = Random.Range(18f, 35f);
-        projectileForce = Random.Range(10f, 80f);
+        projectileForce = Random.Range(18f, 40f);
         projectileLifetime = Random.Range(2f, 8f);
         float scaleRand = Random.Range(0f, .8f);
         transform.localScale = Vector3.one + new Vector3(scaleRand, scaleRand, scaleRand);
