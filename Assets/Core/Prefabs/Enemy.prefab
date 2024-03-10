@@ -55,6 +55,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: caeb124392e32a64b92bb859ba58d04e, type: 3}
+  vfxDeath: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
   currentHealth: 10
 --- !u!54 &5987333607445313935
 Rigidbody:

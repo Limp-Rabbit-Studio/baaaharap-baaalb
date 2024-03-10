@@ -61,7 +61,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
         }
         GameObject go = Instantiate(vfxDeath);
         go.transform.position = transform.position;
-        Destroy(go, 5f);
+        Destroy(go, .8f);
         Destroy(gameObject);
         // gameObject.SetActive(false);
     }
