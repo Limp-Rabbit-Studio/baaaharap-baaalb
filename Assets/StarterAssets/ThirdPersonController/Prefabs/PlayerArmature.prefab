@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 5799695324425993464}
   m_Layer: 8
   m_Name: DashDetector
-  m_TagString: Untagged
+  m_TagString: PlayerDash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   walkVolume: 0.3
   jumpVolume: 0.5
   MoveSpeed: 12
-  SprintSpeed: 12
+  SprintSpeed: 50
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   JumpHeight: 1.2

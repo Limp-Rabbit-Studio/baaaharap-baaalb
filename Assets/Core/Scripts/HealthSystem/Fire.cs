@@ -3,23 +3,22 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
-    public string shooterTag; // Tag of the shooter
+    public string shooterTag;
 
     private void Start()
     {
-        Destroy(gameObject, 10f); // Auto-destroy after 10 seconds
+        Destroy(gameObject, 10f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collided object has the "Player" tag and is not the shooter
         if ((other.CompareTag("Player") || other.CompareTag("PlayerDash")) && !other.CompareTag(shooterTag))
         {
-            IDamageable damageable = other.GetComponent<IDamageable>();
+            IDamageable damageable = other.GetComponentInParent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                Destroy(gameObject); // Destroy the projectile after inflicting damage
+                Destroy(gameObject);
             }
         }
     }
