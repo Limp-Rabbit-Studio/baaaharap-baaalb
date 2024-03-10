@@ -403,11 +403,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5942542700742848460, guid: 73d4edc138a449b4880e86d20172a903,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a81b2244965b36a46833cb1acdd17731, type: 2}
+    - target: {fileID: -4636494371363624691, guid: 73d4edc138a449b4880e86d20172a903,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a1e335d3b576278488a91a673e6928c0, type: 2}
+    - target: {fileID: -2875804299250935131, guid: 73d4edc138a449b4880e86d20172a903,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 729019a6baf44fb4eba2c7d64ba5a294, type: 2}
+    - target: {fileID: -1077053182780097467, guid: 73d4edc138a449b4880e86d20172a903,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1dfd77ac105f4b9409256a9e6977265d, type: 2}
     - target: {fileID: 919132149155446097, guid: 73d4edc138a449b4880e86d20172a903,
         type: 3}
       propertyPath: m_Name
       value: Span2.002
       objectReference: {fileID: 0}
+    - target: {fileID: 6918499290339847265, guid: 73d4edc138a449b4880e86d20172a903,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ee158fda7b02fae4489530616ebb7b63, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
