@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject GameOverMenu;
     public bool isPaused;
+    private PlayerStats playerStats;
     #endregion
 
     #region - Initializer
@@ -18,6 +19,12 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(false);
         GameOverMenu.SetActive(false);
+
+        playerStats = FindObjectOfType<PlayerStats>();
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats script not found in the scene!");
+        }
     }
 
 
@@ -33,11 +40,11 @@ public class PauseMenu : MonoBehaviour
             else
                 PuaseGame();
         }
-        //if (PlayerStats.isDead == true)
-        //{
-        //    GameOver();
-        //    PlayerStats.isDead = false;
-        //}
+        if (playerStats != null && playerStats.isDead)
+        {
+            GameOver();
+            playerStats.isDead = false; // Reset isDead in PlayerStats script
+        }
     }
     #endregion
 
