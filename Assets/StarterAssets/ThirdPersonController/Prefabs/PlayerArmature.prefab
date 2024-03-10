@@ -176,6 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6825881848150343674}
+  - component: {fileID: 7621008895526282610}
   - component: {fileID: 3516553127357186103}
   - component: {fileID: 1794372799564393988}
   - component: {fileID: 5799695324425993464}
@@ -202,6 +203,29 @@ Transform:
   - {fileID: 7248578036105510726}
   m_Father: {fileID: 3893294197879345259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7621008895526282610
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321167308166982164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.36
+  m_Height: 1.67
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.72, z: 0}
 --- !u!135 &3516553127357186103
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -221,8 +245,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.38
-  m_Center: {x: 0.03, y: 0.56, z: 0.34}
+  m_Radius: 0.49
+  m_Center: {x: 0, y: 0.61, z: 0.3825014}
 --- !u!114 &1794372799564393988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +376,7 @@ GameObject:
   - component: {fileID: 6118678125168643298}
   - component: {fileID: 330640030021720030}
   - component: {fileID: 2822348560509361011}
+  - component: {fileID: 8751759212291435569}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -421,7 +446,7 @@ MonoBehaviour:
   walkVolume: 0.3
   jumpVolume: 0.5
   MoveSpeed: 12
-  SprintSpeed: 12
+  SprintSpeed: 50
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -635,6 +660,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34cae876426b594fa9eb216f50df610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8751759212291435569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0a99ec372847342b394f234aa3ac22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: {fileID: 0}
 --- !u!1 &7838752477667182776
 GameObject:
   m_ObjectHideFlags: 0
