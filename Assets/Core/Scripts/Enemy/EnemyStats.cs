@@ -10,14 +10,14 @@ public class EnemyStats : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private GameObject vfxDeath;
-
+    public Animator enemyanim;
     public float currentHealth;
 
     private void Start()
     {
         AIanimation = GetComponent<Animator>();
         AIisDeadHash = Animator.StringToHash("AI_isDead");
-
+        enemyanim = GetComponent<Animator>();
         currentHealth = maxHealth;
         if (healthBar != null)
         {
@@ -41,6 +41,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
                 HarelessBoss harelessBoss = GetComponent<HarelessBoss>();
                 if (harelessBoss != null)
                 {
+                    enemyanim.SetTrigger("Span_Damage");
                     harelessBoss.OnHit();
                 }
             }
