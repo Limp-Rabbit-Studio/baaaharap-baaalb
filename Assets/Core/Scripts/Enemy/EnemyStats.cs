@@ -3,18 +3,19 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour, IDamageable
 {
     Animator AIanimation;
+    int AIisDeadHash;
     [SerializeField] private float maxHealth = 50f;
     [SerializeField] private HealthBar healthBar;
 
-    public float currentHealth;
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip deathSound;
 
-    private void Update()
-    {
-    }
+    public float currentHealth;
 
     private void Start()
     {
         AIanimation = GetComponent<Animator>();
+        AIisDeadHash = Animator.StringToHash("AI_isDead");
 
         currentHealth = maxHealth;
         if (healthBar != null)
@@ -30,6 +31,10 @@ public class EnemyStats : MonoBehaviour, IDamageable
         if (healthBar != null)
         {
             healthBar.SetSlider(currentHealth);
+        }
+        if (damageSound != null)
+        {
+            AudioSource.PlayClipAtPoint(damageSound, transform.position);
         }
         if (currentHealth <= 0)
         {
@@ -48,7 +53,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        AIanimation.SetBool("AI_isDead", true);
+        AIanimation.SetBool(AIisDeadHash, true);
+        if (deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        }
         Destroy(gameObject);
         // gameObject.SetActive(false);
     }

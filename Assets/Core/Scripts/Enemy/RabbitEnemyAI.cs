@@ -13,6 +13,11 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] private float projectileForce = 10f;
     [SerializeField] private float projectileLifetime = 5f;
 
+    [SerializeField] private AudioClip shootingSound;
+    [SerializeField][Range(0, 1)] private float shootingSoundVolume = 0.5f;
+    [SerializeField] private AudioClip jumpingSound;
+    [SerializeField][Range(0, 1)] private float jumpingSoundVolume = 0.5f;
+
     private float timeSinceLastShot = 0f;
     private float timeSinceLastJump = 0f;
     private Rigidbody rb;
@@ -70,6 +75,8 @@ public class RabbitEnemyAI : MonoBehaviour
         Vector3 direction = (player.position - projectileSpawnPoint.position).normalized;
         projectileRb.velocity = direction * projectileForce;
         Destroy(projectile, projectileLifetime);
+
+        AudioSource.PlayClipAtPoint(shootingSound, projectileSpawnPoint.position, shootingSoundVolume);
     }
 
     private void JumpRandomlyTowardsPlayer()
@@ -91,6 +98,7 @@ public class RabbitEnemyAI : MonoBehaviour
     [SerializeField] Vector3 delta;
     void DoSimpleJump()
     {
+        AudioSource.PlayClipAtPoint(jumpingSound, transform.position, jumpingSoundVolume);
         distanceX = Random.Range(-jumpRadius, jumpRadius);
         distanceZ = Random.Range(-jumpRadius, jumpRadius);
         crtLoc = transform.position;

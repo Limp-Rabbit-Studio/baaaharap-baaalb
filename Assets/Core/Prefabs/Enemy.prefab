@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBar: {fileID: 0}
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: caeb124392e32a64b92bb859ba58d04e, type: 3}
   currentHealth: 10
 --- !u!54 &5987333607445313935
 Rigidbody:
@@ -124,6 +126,10 @@ MonoBehaviour:
   jumpRadius: 5
   projectileForce: 20
   projectileLifetime: 5
+  shootingSound: {fileID: 8300000, guid: 341cb167b72cedb48975cfad8d3ae33c, type: 3}
+  shootingSoundVolume: 1
+  jumpingSound: {fileID: 8300000, guid: b812e6fd2f3985043a68039231af11db, type: 3}
+  jumpingSoundVolume: 0.64
   AIanim: {fileID: 0}
   player: {fileID: 0}
   distanceX: 0
