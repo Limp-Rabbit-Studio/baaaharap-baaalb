@@ -1,21 +1,9 @@
-using System;
 using UnityEngine;
 
 public class DashCollisionHandler : MonoBehaviour
 {
     public SheepDashAttack sheepDashAttackScript;
     public AudioClip bangSound;
-
-    private AudioSource audioSource;
-
-    void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            // Debug.LogError("DashCollisionHandler: No AudioSource found. Please attach an AudioSource to the GameObject.");
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -54,7 +42,7 @@ public class DashCollisionHandler : MonoBehaviour
             {
                 // Debug.LogWarning("Dash Collision: The object tagged as 'Enemy' does not have an EnemyStats component.");
             }
+            AudioSource.PlayClipAtPoint(bangSound, transform.position);
         }
-        // There is no else clause needed here, as we want to ignore all other collisions
     }
 }

@@ -10,13 +10,10 @@ public class SheepDashAttack : MonoBehaviour
     public float dashCooldown = 1f;
     public float damage = 10f;
     public AudioClip swooshSound;
-    public AudioClip bangSound;
     private CharacterController characterController;
     private float cooldownTimer;
     private bool isDashing = false;
-    private AudioSource audioSource;
 
-    // Make the isDashing property public so it can be accessed from the DashCollisionHandler
     public bool IsDashing
     {
         get { return isDashing; }
@@ -62,9 +59,7 @@ public class SheepDashAttack : MonoBehaviour
             StartCoroutine(DoDash());
             cooldownTimer = dashCooldown;
             signifier.SetActive(false);
-
-            // Play swoosh sound
-            audioSource.PlayOneShot(swooshSound);
+            AudioSource.PlayClipAtPoint(swooshSound, transform.position);
         }
 
         if (cooldownTimer > 0f)
