@@ -11,6 +11,14 @@ public class HarelessBoss : MonoBehaviour
     public float hitDashDelay = 1f; // Delay between dashes when hit
     public Rigidbody rb; // Assuming this is set via the Inspector or Start method
 
+    public Transform projectileSpawnPoint; // Set this in the Inspector
+    public GameObject projectilePrefab; // Set this in the Inspector
+    public float shootingInterval = 2f; // Time between each shot sequence
+    public float projectileForce = 20f; // Speed of the projectile
+    public float shotSpacing = 0.5f; // Time between individual shots in a sequence
+    private float shootingTimer;
+
+
     private float positionChangeTimer;
     public bool isActivated = false;
 
@@ -18,6 +26,7 @@ public class HarelessBoss : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         positionChangeTimer = positionChangeInterval;
+        shootingTimer = shootingInterval; // Initialize the shooting timer
     }
 
     void Update()
@@ -30,7 +39,36 @@ public class HarelessBoss : MonoBehaviour
             DashToRandomPosition();
             positionChangeTimer = positionChangeInterval + stayDuration;
         }
+        shootingTimer -= Time.deltaTime;
+        if (shootingTimer <= 0)
+        {
+            StartCoroutine(ShootSequence());
+            shootingTimer = shootingInterval;
+        }
     }
+    IEnumerator ShootSequence()
+    {
+        for (int i = 0; i < 3; i++) // Shoot 3 projectiles with some spacing
+        {
+            ShootProjectile();
+            yield return new WaitForSeconds(shotSpacing);
+        }
+    }
+    void ShootProjectile()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player && projectilePrefab && projectileSpawnPoint)
+        {
+            Vector3 direction = (player.transform.position - projectileSpawnPoint.position).normalized;
+            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.LookRotation(direction));
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+            projectileRb.velocity = direction * projectileForce;
+
+            Destroy(projectile, 5f);
+        }
+    }
+
 
     void DashToRandomPosition()
     {
