@@ -54,7 +54,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        AIanimation.SetBool(AIisDeadHash, true);
+        // null check for AIanimation
+        if (AIanimation != null)
+        {
+            AIanimation.SetBool(AIisDeadHash, true);
+        }
         if (deathSound != null)
         {
             AudioSource.PlayClipAtPoint(deathSound, transform.position);

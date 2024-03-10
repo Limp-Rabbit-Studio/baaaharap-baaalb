@@ -1,68 +1,72 @@
 using UnityEngine;
+using System.Collections;
 
 public class HarelessBoss : MonoBehaviour
 {
-    public Transform[] movePositions;
+    public Transform[] movePositions; // Assume at least 4 positions are set in the Inspector
     public GameObject bulletPrefab;
-    public int bulletsToShoot = 3;
-    public float shootInterval = 2f;
-    public float moveSpeed = 5f;
-    public float positionChangeInterval = 4f;
+    public float dashSpeed = 30f; // Speed of dash
+    public float stayDuration = 5f; // How long to stay in a position
+    public float positionChangeInterval = 4f; // Normal movement interval
+    public float hitDashDelay = 1f; // Delay between dashes when hit
+    public Rigidbody rb; // Assuming this is set via the Inspector or Start method
 
-    private EnemyStats enemyStats;
-    private float shootTimer;
     private float positionChangeTimer;
-    private bool isActivated = false;
+    public bool isActivated = false;
 
     void Start()
     {
-        enemyStats = GetComponent<EnemyStats>();
-        shootTimer = shootInterval;
+        rb = GetComponent<Rigidbody>();
         positionChangeTimer = positionChangeInterval;
     }
 
     void Update()
     {
-        if (!isActivated || enemyStats.currentHealth <= 0) return;
-
-        shootTimer -= Time.deltaTime;
-        if (shootTimer <= 0)
-        {
-            ShootBullets();
-            shootTimer = shootInterval;
-        }
+        if (!isActivated) return;
 
         positionChangeTimer -= Time.deltaTime;
         if (positionChangeTimer <= 0)
         {
-            ChangePosition();
-            positionChangeTimer = positionChangeInterval;
+            DashToRandomPosition();
+            positionChangeTimer = positionChangeInterval + stayDuration; // Reset timer to include stay duration
         }
     }
 
-    private void ChangePosition()
+    void DashToRandomPosition()
     {
         int index = Random.Range(0, movePositions.Length);
-        transform.position = movePositions[index].position;
+        StartCoroutine(DashToPosition(movePositions[index].position));
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator DashToPosition(Vector3 targetPosition)
     {
-        if (other.CompareTag("PlayerTrigger"))
+        float timeToDash = Vector3.Distance(transform.position, targetPosition) / dashSpeed;
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0;
+
+        while (elapsedTime < timeToDash)
         {
-            isActivated = true;
+            rb.MovePosition(Vector3.Lerp(startPosition, targetPosition, elapsedTime / timeToDash));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-        else if (other.CompareTag("PlayerDash") && isActivated)
-        {
-            ChangePosition();
-        }
+
+        rb.position = targetPosition; // Ensure the boss reaches the target position
     }
 
-    private void ShootBullets()
+    // Call this method when the boss is hit
+    public void OnHit()
     {
-        for (int i = 0; i < bulletsToShoot; i++)
+        StartCoroutine(PerformHitReactionDashes());
+    }
+
+    IEnumerator PerformHitReactionDashes()
+    {
+        for (int i = 0; i < 3; i++) // Perform 3 dashes
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            int newIndex = Random.Range(0, movePositions.Length);
+            yield return DashToPosition(movePositions[newIndex].position);
+            yield return new WaitForSeconds(hitDashDelay); // Wait before the next dash
         }
     }
 }
