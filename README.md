@@ -1,4 +1,4 @@
-# A Game Created for the RGDA University Game Jam 2024 - Worked in a team of 5.
+# A Game Created for the RGDA University Game Jam 2024 - Best Graphics Title.
 Team 15  Limp Rabbit Studio
 
 ## Baaaharap Baaalb
@@ -6,6 +6,10 @@ Team 15  Limp Rabbit Studio
 **Baaaharap Baaalb** is an imaginative reinterpretation of the Romanian folk tale "The Story of Harap-Alb." In this version, the hero, Harap-Alb, does not receive the potion he requests from Ms. Sunday and exits the story (his fate remains ambiguous). Instead, one of Ms. Sunday's sheep drinks the potion, gains consciousness, and even grows wings. Baaaharap Baaalb, driven by intense emotions and a deep love for Ms. Sunday, embarks on a journey marked by his increasingly dark thoughts and demonic transformation, especially when embraced by Ms. Sunday. This love strengthens him but also corrupts him, as seen in the sheep's final demonic form.
 
 Throughout his journey, Baaaharap Baaalb encounters and battles characters from other Romanian fairy tales, including the half-man, half-rabbit hero "Jumătate de om călare pe jumătate de iepure șchiop." The final showdown is with Mr. Hareless Man, a character inspired by Spân from the original story combined with secondary antagonists from the game. The narrative explores Baaaharap Baaalb's tragic flaw of seeking justice through his own hands, believing himself to be a hero solely to impress others.
+
+## Awards
+
+- **Best Graphics** at the RGDA University Game Jam 2024
 
 ## Team Members and Contributions
 
